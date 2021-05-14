@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ActionPoint : MonoBehaviour
 {
     
-    private CharacterReal currentCharacter;
+    private BaseCharacter currentCharacter;
     [Range(0,1)] float AngleSensitivity;
     [EnumFlag] public DirectionFlags ValidDirections = DirectionFlags.Everything;
 
@@ -14,13 +14,13 @@ public class ActionPoint : MonoBehaviour
     public UnityEvent OnExit;
     public UnityEvent OnInteract;
 
-    public void CharEnter(CharacterReal characterReal)
+    public void CharEnter(BaseCharacter characterReal)
     {
         currentCharacter = characterReal;
         OnEnter.Invoke();
     }
     
-    public void CharExit(CharacterReal characterReal)
+    public void CharExit(BaseCharacter characterReal)
     {
         currentCharacter = null;
 
@@ -33,7 +33,7 @@ public class ActionPoint : MonoBehaviour
         OnInteract.Invoke();
     }
 
-    public bool IsCharValid(CharacterReal characterReal)
+    public bool IsCharValid(BaseCharacter characterReal)
     {
         return (ValidDirections & characterReal.CurrentDirection) != 0;
     }

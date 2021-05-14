@@ -1,27 +1,18 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
-using static DirectionUtils;
 
-public class CharacterReal : MonoBehaviour
+public class CharacterReal : BaseCharacter
 {
+    private static readonly int IsWalkingAnim = Animator.StringToHash("IsWalking");
+
+    public CharacterGame GameCharacter;
 
     private Rigidbody Rigidbody;
 
     public float WalkSpeed;
     public float TurnSpeed;
 
-    public Animator CharacterAnimator;
-    public DirectionFlags InputDirection;
-    public DirectionFlags CurrentDirection = DirectionFlags.Up;
-
-    public List<ActionPoint> actionPoints;
-    public ActionPoint CurrentAp;
-
-
-    
     void Start()
     {
         Rigidbody = GetComponent<Rigidbody>();
@@ -31,34 +22,30 @@ public class CharacterReal : MonoBehaviour
     {
         InputDirection = GetInputDirection();
         if (InputDirection != DirectionFlags.None) CurrentDirection = InputDirection;
+        
         HandleMovement(InputDirection);
-        HandleRotation(CurrentDirection);
+        HandleRotation();
         HandleActionPoints();
+        HandleInteraction();
     }
 
-    private void HandleActionPoints()
+    private void HandleInteraction()
     {
-        var pt = actionPoints
-            .Where(it => it.IsCharValid(this))
-            .OrderBy(it => Vector2.Distance(it.transform.position, transform.position))
-            .FirstOrDefault();
-
-        if (pt != CurrentAp)
-        {
-            if (CurrentAp) CurrentAp.CharExit(this);
-            CurrentAp = pt;
-            if(CurrentAp) CurrentAp.CharEnter(this);
-        }
-
         if (CurrentAp && Input.GetKeyDown(KeyCode.Space))
         {
             CurrentAp.CharInteract();
         }
     }
 
-    private void HandleRotation(DirectionFlags inputDirection)
+    [UsedImplicitly] //Event Call
+    public void EnterGame()
     {
+        GameCharacter.ModeActive = true;
+        this.ModeActive = false;
+    }
 
+    private void HandleRotation()
+    {
         transform.rotation = Quaternion.Slerp(
             transform.rotation, 
             CurrentDirection.ToRotation(), 
@@ -67,24 +54,16 @@ public class CharacterReal : MonoBehaviour
 
     private void HandleMovement(DirectionFlags inputDirection)
     {
+        if(CurrentSMB && !CurrentSMB.CanMove) return;
         if (inputDirection == DirectionFlags.None) return;
         
         Vector3 dir =  inputDirection.ToVector();
 
         Rigidbody.MovePosition(Rigidbody.position + dir.normalized * (WalkSpeed * Time.deltaTime));
-        CharacterAnimator.SetBool("IsWalking", true);
+        CharacterAnimator.SetBool(IsWalkingAnim, true);
     
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        var ap = other.GetComponent<ActionPoint>();
-        actionPoints.Add(ap);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        var ap = other.GetComponent<ActionPoint>();
-        actionPoints.Remove(ap);
-    }
+    private void OnTriggerEnter(Collider other) => TriggerEntered(other);
+    private void OnTriggerExit(Collider other) => TriggerExited(other);
 }

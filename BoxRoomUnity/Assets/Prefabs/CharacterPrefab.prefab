@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 51212c13365c14b039d945a4bef787df, type: 3}
+  - {fileID: 2100000, guid: a55d43426390143dfb767c5da7a0e525, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a55d43426390143dfb767c5da7a0e525, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -269,10 +269,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fe9f908ec19464aa63d9ced4ecfa68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 0.8
-  TurnSpeed: 10
+  ModeActive: 0
   CharacterAnimator: {fileID: 7831602286539641058}
   InputDirection: 0
   CurrentDirection: 2
   actionPoints: []
   CurrentAp: {fileID: 0}
+  CurrentSMB: {fileID: 0}
+  GameCharacter: {fileID: 0}
+  WalkSpeed: 1
+  TurnSpeed: 10

@@ -50,3 +50,6 @@ TagManager:
   - name: Foreground
     uniqueID: 105237935
     locked: 0
+  - name: BlackOut
+    uniqueID: 422619387
+    locked: 0

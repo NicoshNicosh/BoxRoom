@@ -2,71 +2,62 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
 
     private static readonly int AttackAnim = Animator.StringToHash("Attack");
 
-    public abstract bool ModeActive { get; }
+    [Header("Base Character")]
     public Animator CharacterAnimator;
-    public DirectionFlags InputDirection;
-    public DirectionFlags CurrentDirection = DirectionFlags.Up;
-    [ReadOnly] public ActionPoint CurrentAp;
-    private List<ActionPoint> ActionPoints = new List<ActionPoint>();
-    [HideInInspector] public CharacterSMB CurrentSMB;
-    public UnityEvent OnEscPressed;
+    [ReadOnly] public DirectionFlags InputDirection;
+    [ReadOnly] public DirectionFlags CurrentDirection = DirectionFlags.Up;
+    [ReadOnly] public BaseEntity CurrentEntity;
+    
+    private readonly List<BaseEntity> _entities = new List<BaseEntity>();
+    internal CharacterSMB CurrentSmb;
+    public abstract bool ModeActive { get; }
 
     protected void HandleActionPoints()
     {
-        var pt = ActionPoints
+        _entities.RemoveAll(it => !it);
+
+        var pt = _entities
             .Where(it => it.IsCharValid(this))
             .OrderBy(it => Vector2.Distance(it.transform.position, transform.position))
             .FirstOrDefault();
 
-        if (pt != CurrentAp)
+        if (pt != CurrentEntity)
         {
-            if (CurrentAp) CurrentAp.CharExit(this);
-            CurrentAp = pt;
-            if (CurrentAp) CurrentAp.CharEnter(this);
+            if (CurrentEntity) CurrentEntity.CharExit(this);
+            CurrentEntity = pt;
+            if (CurrentEntity) CurrentEntity.CharEnter(this);
         }
     }
-
-    protected void HandleEscPressed()
-    {
-        if (ModeActive && Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnEscPressed.Invoke();
-        }
-    }
-
-    protected void HandleInteraction()
-    {
-        if (ModeActive && CurrentAp && Input.GetKeyDown(KeyCode.Return))
-        {
-            CurrentAp.CharInteract();
-        }
-    }
+    
 
     protected void HandleAttack()
     {
-        var ShiftPressed = Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift);
-        if (ModeActive && ShiftPressed)
+        var shiftPressed = Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift);
+        if (ModeActive && shiftPressed)
         {
             CharacterAnimator.SetTrigger(AttackAnim); //Todo: Prevent Double attacks 
         }
     }
 
-    protected void TriggerEntered(Component other)
+    protected void EntityEnter(Component other)
     {
-        var ap = other.GetComponent<ActionPoint>();
-        ActionPoints.Add(ap);
+        Debug.Log("Enter: " + other);
+        var ap = other.GetComponent<BaseEntity>();
+        _entities.Add(ap);
     }
 
-    protected void TriggerExited(Component other)
+    protected void EntityExit(Component other)
     {
-        var ap = other.GetComponent<ActionPoint>();
-        ActionPoints.Remove(ap);
+        Debug.Log("Exit: " + other);
+        var ap = other.GetComponent<BaseEntity>();
+        _entities.Remove(ap);
     }
 
     protected DirectionFlags GetInputDirection()

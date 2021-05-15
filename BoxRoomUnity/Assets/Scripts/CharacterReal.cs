@@ -5,17 +5,17 @@ using UnityEngine;
 public class CharacterReal : BaseCharacter
 {
     private static readonly int IsWalkingAnim = Animator.StringToHash("IsWalking");
-
-    public CharacterGame GameCharacter;
-
-    private Rigidbody Rigidbody;
-
+    
+    [Header("References")]
+    private Rigidbody _rigidbody;
+    
+    [Header("Settings")]
     public float WalkSpeed;
     public float TurnSpeed;
 
     void Start()
     {
-        Rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
     
     void Update()
@@ -25,7 +25,6 @@ public class CharacterReal : BaseCharacter
         
         HandleMovement(InputDirection);
         HandleRotation();
-        HandleEscPressed();
         HandleActionPoints();
         HandleInteraction();
         HandleAttack();
@@ -39,20 +38,38 @@ public class CharacterReal : BaseCharacter
             TurnSpeed * Time.deltaTime);
     }
 
+
+    private void HandleInteraction()
+    {
+        var interactPressed = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space);
+        if(!interactPressed) return;
+        ;
+        if (ModeActive && CurrentEntity is ActionPoint point)
+        {
+            point.CharInteract();
+        }
+    }
+
     private void HandleMovement(DirectionFlags inputDirection)
     {
-        if(CurrentSMB && !CurrentSMB.CanMove) return;
-        if (inputDirection == DirectionFlags.None) return;
+        var blockedMove = CurrentSmb && !CurrentSmb.CanMove;
+        var canWalk = inputDirection != DirectionFlags.None && !blockedMove;
         
+        CharacterAnimator.SetBool(IsWalkingAnim, canWalk);
+        if (!canWalk) return;
+
         Vector3 dir =  inputDirection.ToVector();
 
-        Rigidbody.MovePosition(Rigidbody.position + dir.normalized * (WalkSpeed * Time.deltaTime));
-        CharacterAnimator.SetBool(IsWalkingAnim, true);
+        _rigidbody.MovePosition(_rigidbody.position + dir.normalized * (WalkSpeed * Time.deltaTime));
     
     }
 
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
+    
+    private void OnTriggerEnter(Collider other) => EntityEnter(other);
+    private void OnTriggerExit(Collider other) => EntityExit(other);
 
-    private void OnTriggerEnter(Collider other) => TriggerEntered(other);
-    private void OnTriggerExit(Collider other) => TriggerExited(other);
+    private void OnCollisionEnter(Collision other)=> EntityEnter(other.collider);
+
+    private void OnCollisionExit(Collision other)=> EntityExit(other.collider);
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1682235102}
   - component: {fileID: 1682235103}
   - component: {fileID: 545924476252365923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2DCharSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,9 +123,9 @@ MonoBehaviour:
   CharacterAnimator: {fileID: 1572658991231759383}
   InputDirection: 0
   CurrentDirection: 2
-  CurrentAp: {fileID: 0}
-  CurrentSMB: {fileID: 0}
-  OnEscPressed:
+  CurrentEntity: {fileID: 0}
+  WalkSpeed: 3
+  OnInteract:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
@@ -140,8 +140,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  RealCharacter: {fileID: 0}
-  WalkSpeed: 3
 --- !u!50 &1682235102
 Rigidbody2D:
   serializedVersion: 4
@@ -215,7 +213,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8476638200987512873}
   - component: {fileID: 6564929548970586770}
-  m_Layer: 0
+  - component: {fileID: 480977452}
+  m_Layer: 6
   m_Name: SwordCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,3 +261,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36, y: 0.27}
   m_EdgeRadius: 0
+--- !u!114 &480977452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3908111807631419917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be96988d3ca84106960fd733b089de99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: {fileID: 1682235101}
+  Force: 1e+9

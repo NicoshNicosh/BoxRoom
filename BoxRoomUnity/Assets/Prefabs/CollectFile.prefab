@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3707205889673521659}
   - component: {fileID: 9034338939681997582}
   - component: {fileID: 7712707198039653220}
+  - component: {fileID: 1417159372716391626}
   m_Layer: 0
   m_Name: CollectFile
   m_TagString: Untagged
@@ -134,3 +135,26 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 1}
   m_Torque: 0
+--- !u!114 &1417159372716391626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592733498275185379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d311aede1d70444ea0f27ea21505beab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LastCharacter: {fileID: 0}
+  ValidDirections: 255
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []

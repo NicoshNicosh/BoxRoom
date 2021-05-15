@@ -268,11 +268,6 @@ PrefabInstance:
       propertyPath: environmentManager
       value: 
       objectReference: {fileID: 531875953}
-    - target: {fileID: 7215841585995344182, guid: 9374124211f989c4ba77e621b3e42ca5,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.85
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9374124211f989c4ba77e621b3e42ca5, type: 3}
 --- !u!1001 &8832727046868194329

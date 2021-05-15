@@ -22,14 +22,7 @@ public abstract class BaseCharacter : MonoBehaviour
 
     public abstract bool ModeActive { get; }
 
-
-    protected virtual void Awake()
-    {
-        foreach (var smb in CharacterAnimator.GetBehaviours<CharacterSMB>())
-        {
-            smb.Character = this;
-        }
-    }
+    
     protected virtual void Update()
     {
         bool isMoving = false;

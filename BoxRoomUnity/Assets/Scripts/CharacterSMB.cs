@@ -2,8 +2,6 @@
 
 public class CharacterSMB : StateMachineBehaviour
 {
-    internal BaseCharacter Character;
-
     public bool CanAttack = false;
     public bool CanMove = false;
     public bool CanInteract = true;
@@ -12,11 +10,15 @@ public class CharacterSMB : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Character.SMBs.Add(this);
+        var animControl = animator.GetComponent<AnimationControl>();
+        if(!animControl) return;
+        animControl.Character.SMBs.Add(this);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Character.SMBs.Remove(this);
+        var animControl = animator.GetComponent<AnimationControl>();
+        if(!animControl) return;
+        animControl.Character.SMBs.Remove(this);
     }
 }

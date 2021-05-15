@@ -10,7 +10,9 @@ public abstract class BaseEntity : MonoBehaviour
     [EnumFlag] public DirectionFlags ValidDirections = DirectionFlags.Everything;
     public UnityEvent OnEnter;
     public UnityEvent OnExit;
-    public UnityEvent OnAttack;
+	public UnityEvent OnAttack;
+
+    public AudioSource audioSource;
     
 
     public void CharEnter(BaseCharacter characterReal)
@@ -40,4 +42,12 @@ public abstract class BaseEntity : MonoBehaviour
     {
         return (ValidDirections & characterReal.CurrentDirection) != 0;
     }
+
+    public void PlaySound()
+	{
+        if (audioSource != null)
+		{
+            audioSource.Play();
+		}
+	}
 }

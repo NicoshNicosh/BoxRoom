@@ -36,7 +36,7 @@ public class MusicManager : MonoBehaviour
         AudioSource nextSource = audioSources[newMode];
         if (nextSource == currentSource) return;
 
-        if (currentSource != null) currentSource.Stop();
+        if (currentSource != null) currentSource.Pause();
 
         nextSource.Play();
         currentSource = nextSource;

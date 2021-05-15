@@ -15,6 +15,7 @@ public class ActionPoint : BaseEntity
     public void CharInteract()
     {   
         OnInteract.Invoke();
+        PlaySound();
     }
 
     public void EnterPlay() => (LastCharacter as CharacterReal)?.EnterState(CharacterStates.Play);

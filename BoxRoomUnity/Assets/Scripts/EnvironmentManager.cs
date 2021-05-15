@@ -10,7 +10,11 @@ public enum CharacterModes
 
 public class EnvironmentManager : MonoBehaviour
 {
-    public static EnvironmentManager Instance = null;
+    private static EnvironmentManager _instance;
+
+    public static EnvironmentManager Instance =>
+        _instance ? _instance : _instance = FindObjectOfType<EnvironmentManager>();
+
     private static readonly int ModeAnim = Animator.StringToHash("Mode");
     private static readonly int DayProgressAnim = Animator.StringToHash("DayProgress");
 
@@ -23,34 +27,40 @@ public class EnvironmentManager : MonoBehaviour
 
     [Header("Settings")]
     public float DayDuration;
-    public CharacterModes Mode = CharacterModes.RoomMode;
+
+    [SerializeField] private CharacterModes _mode = CharacterModes.RoomMode;
+
+    private int DebounceFrame = 0;
+
+    public CharacterModes Mode => _mode;
 
 
     public void EnterGame()
     {
-        Mode = CharacterModes.GameMode;
+        if (Time.frameCount == DebounceFrame) return;
+        DebounceFrame = Time.frameCount;
+        _mode = CharacterModes.GameMode;
     }
 
     public void EnterRoom()
     {
-        Mode = CharacterModes.RoomMode;
+        if (Time.frameCount == DebounceFrame) return;
+        DebounceFrame = Time.frameCount;
+        _mode = CharacterModes.RoomMode;
     }
 
-    
+
     public void EnterDream()
     {
-        Mode = CharacterModes.DreamMode;
+        if (Time.frameCount == DebounceFrame) return;
+        DebounceFrame = Time.frameCount;
+        _mode = CharacterModes.DreamMode;
     }
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
+    
     private void Update()
     {
         DayProgress = Mathf.Clamp01((Time.time - DayStartTime) / DayDuration);
         EnvironmentAnimator.SetInteger(ModeAnim, (int)Mode);
-        EnvironmentAnimator.SetFloat(DayProgressAnim , DayProgress);
+        EnvironmentAnimator.SetFloat(DayProgressAnim, DayProgress);
     }
 }

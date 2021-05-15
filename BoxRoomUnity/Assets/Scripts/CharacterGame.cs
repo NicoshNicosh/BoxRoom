@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.XR;
 
 public class CharacterGame : BaseCharacter
 {
-    public CharacterReal RealCharacter;
     private static readonly int CollectAnim = Animator.StringToHash("Collect");
     private static readonly int IsWalkingAnim = Animator.StringToHash("IsWalking");
-
-    private Rigidbody2D Rigidbody;
-    public float WalkSpeed;
     private static readonly int DirectionAnim = Animator.StringToHash("Direction");
+    
+    [Header("References")]
+    private Rigidbody2D Rigidbody;
+    
+    [Header("Settings")]
+    public float WalkSpeed;
+    [FormerlySerializedAs("OnEscPressed")] public UnityEvent OnInteract;
 
     void Start()
     {
@@ -27,10 +32,17 @@ public class CharacterGame : BaseCharacter
 
         HandleMovement(InputDirection);
         HandleRotation();
-        HandleEscPressed();
         HandleActionPoints();
-        HandleInteraction();
         HandleAttack();
+        HandleGameExit();
+    }
+
+
+    private void HandleGameExit()
+    {
+        var interactPressed = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space);
+        if(!interactPressed || !ModeActive) return;
+        this.OnInteract.Invoke();
     }
 
     private void HandleRotation()
@@ -47,7 +59,7 @@ public class CharacterGame : BaseCharacter
     private void HandleMovement(DirectionFlags inputDirection)
     {
 
-        var blockedMove = CurrentSMB && !CurrentSMB.CanMove;
+        var blockedMove = CurrentSmb && !CurrentSmb.CanMove;
         var canWalk = inputDirection != DirectionFlags.None && !blockedMove;
 
         CharacterAnimator.SetBool(IsWalkingAnim, canWalk);
@@ -62,11 +74,11 @@ public class CharacterGame : BaseCharacter
     {
         var collectible = other.GetComponent<Collectible>();
         if (other.GetComponent<Collectible>()) HandleCollection(collectible);
-        TriggerEntered(other);
+        EntityEnter(other);
     }
 
 
-    private void OnTriggerExit2D(Collider2D other) => TriggerExited(other);
+    private void OnTriggerExit2D(Collider2D other) => EntityExit(other);
 
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.GameMode;
 }

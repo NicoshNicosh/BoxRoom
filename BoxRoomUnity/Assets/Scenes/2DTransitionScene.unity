@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748c9558b880f064baad050fdfb3b14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoopPrefab: {fileID: 0}
+  Character: {fileID: 0}
 --- !u!850595691 &1132147437
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -859,6 +859,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.015874978
       objectReference: {fileID: 0}
+    - target: {fileID: 5523735897083076814, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5530203516894181661, guid: cda6a69d34da24b2791c59bbde604294,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1184,6 +1189,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.8820755
       objectReference: {fileID: 0}
+    - target: {fileID: 8018399062370156243, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8018399062370156245, guid: cda6a69d34da24b2791c59bbde604294,
         type: 3}
       propertyPath: m_Color.b
@@ -1379,5 +1389,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8832727048634839348, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: ValidDirections
+      value: 2147483647
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 312231561044666005, guid: cda6a69d34da24b2791c59bbde604294, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cda6a69d34da24b2791c59bbde604294, type: 3}

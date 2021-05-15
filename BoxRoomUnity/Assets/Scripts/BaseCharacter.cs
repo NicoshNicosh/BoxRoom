@@ -8,6 +8,7 @@ public abstract class BaseCharacter : MonoBehaviour
 {
 
     private static readonly int AttackAnim = Animator.StringToHash("Attack");
+    private static readonly int IsWalkingAnim = Animator.StringToHash("IsWalking");
 
     [Header("Base Character")]
     public Animator CharacterAnimator;
@@ -18,6 +19,51 @@ public abstract class BaseCharacter : MonoBehaviour
     private readonly List<BaseEntity> _entities = new List<BaseEntity>();
     internal CharacterSMB CurrentSmb;
     public abstract bool ModeActive { get; }
+
+
+    protected virtual void Awake()
+    {
+        foreach (var smb in CharacterAnimator.GetBehaviours<CharacterSMB>())
+        {
+            smb.Character = this;
+        }
+    }
+    protected virtual void Update()
+    {
+        bool isMoving = false;
+
+        if (ModeActive)
+        {
+            var canMove = !CurrentSmb || CurrentSmb.CanMove;
+            if (canMove)
+            {
+                InputDirection = GetInputDirection();
+                isMoving = InputDirection != DirectionFlags.None;
+                HandleMovement(InputDirection);
+            }
+
+            if (isMoving) CurrentDirection = InputDirection;
+        }
+
+        CharacterAnimator.SetBool(IsWalkingAnim, isMoving);
+        HandleRotation();
+        HandleActionPoints();
+
+        if (ModeActive)
+        {
+            var canAttack = !CurrentSmb || CurrentSmb.CanAttack;
+            if (canAttack) HandleAttack();
+
+            var canInteract =  !CurrentSmb || CurrentSmb.CanAttack;
+            if (canInteract) HandleInteraction();
+        }
+    }
+
+    protected abstract void HandleInteraction();
+
+    protected abstract void HandleRotation();
+
+    protected abstract void HandleMovement(DirectionFlags inputDirection);
 
     protected void HandleActionPoints()
     {
@@ -39,30 +85,14 @@ public abstract class BaseCharacter : MonoBehaviour
 
     protected void HandleAttack()
     {
-        var shiftPressed = Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift);
-        if (ModeActive && shiftPressed)
+        if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
         {
             CharacterAnimator.SetTrigger(AttackAnim); //Todo: Prevent Double attacks 
         }
     }
-
-    protected void EntityEnter(Component other)
-    {
-        Debug.Log("Enter: " + other);
-        var ap = other.GetComponent<BaseEntity>();
-        _entities.Add(ap);
-    }
-
-    protected void EntityExit(Component other)
-    {
-        Debug.Log("Exit: " + other);
-        var ap = other.GetComponent<BaseEntity>();
-        _entities.Remove(ap);
-    }
-
+    
     protected DirectionFlags GetInputDirection()
     {
-        if (!ModeActive) return DirectionFlags.None;
         var up = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
         var left = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
         var down = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
@@ -78,6 +108,17 @@ public abstract class BaseCharacter : MonoBehaviour
         if (right) return DirectionFlags.Right;
 
         return DirectionFlags.None;
+    }
+    protected void EntityEnter(Component other)
+    {
+        var ap = other.GetComponent<BaseEntity>();
+        _entities.Add(ap);
+    }
+
+    protected void EntityExit(Component other)
+    {
+        var ap = other.GetComponent<BaseEntity>();
+        _entities.Remove(ap);
     }
 
 }

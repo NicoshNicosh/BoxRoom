@@ -6,6 +6,7 @@ public enum CharacterModes
     RoomMode = 1,
     GameMode = 2,
     DreamMode = 3,
+    UiMode = 4,
 }
 
 public class EnvironmentManager : MonoBehaviour

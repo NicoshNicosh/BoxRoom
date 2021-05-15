@@ -4,72 +4,92 @@ using UnityEngine;
 
 public class CharacterReal : BaseCharacter
 {
-    private static readonly int IsWalkingAnim = Animator.StringToHash("IsWalking");
-    
     [Header("References")]
-    private Rigidbody _rigidbody;
-    
+    [SerializeField] private Rigidbody Rigidbody;
+
     [Header("Settings")]
     public float WalkSpeed;
     public float TurnSpeed;
 
-    void Start()
+    [Header("State")]
+    [ReadOnly] public CharacterStates State = CharacterStates.Stand;
+
+    [ReadOnly] public float LastTimeStanding;
+    [ReadOnly] public float TimeInState;
+    private static readonly int InBedAnim = Animator.StringToHash("InBed");
+    private static readonly int IsPlayAnim = Animator.StringToHash("IsPlay");
+    private static readonly int IsPoopingAnim = Animator.StringToHash("IsPooping");
+    private static readonly int TimeInStateAnim = Animator.StringToHash("TimeInState");
+
+    protected override void Update()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-    
-    void Update()
-    {
-        InputDirection = GetInputDirection();
-        if (InputDirection != DirectionFlags.None) CurrentDirection = InputDirection;
-        
-        HandleMovement(InputDirection);
-        HandleRotation();
-        HandleActionPoints();
-        HandleInteraction();
-        HandleAttack();
+        base.Update();
+
+        if (State == CharacterStates.Play && EnvironmentManager.Instance.Mode != CharacterModes.GameMode)
+            State = CharacterStates.Stand;
+
+        CharacterAnimator.SetBool(InBedAnim, State == CharacterStates.Bed);
+        CharacterAnimator.SetBool(IsPlayAnim, State == CharacterStates.Play);
+        CharacterAnimator.SetBool(IsPoopingAnim, State == CharacterStates.Poop);
+
+        if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
+        TimeInState = Time.time - LastTimeStanding;
+        CharacterAnimator.SetFloat(TimeInStateAnim, TimeInState);
     }
 
-    private void HandleRotation()
+    public void EnterState(CharacterStates state)
     {
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation, 
-            CurrentDirection.ToRotation(), 
-            TurnSpeed * Time.deltaTime);
+        State = state;
+        if (state == CharacterStates.Play) EnvironmentManager.Instance.EnterGame();
     }
 
-
-    private void HandleInteraction()
+    protected override void HandleInteraction()
     {
         var interactPressed = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space);
-        if(!interactPressed) return;
-        ;
-        if (ModeActive && CurrentEntity is ActionPoint point)
+        if (!interactPressed) return;
+        if (CurrentSmb && CurrentSmb.IsLongState)
+        {
+            State = CharacterStates.Stand;
+            return;
+        }
+        
+        if (CurrentEntity is ActionPoint point)
         {
             point.CharInteract();
         }
     }
-
-    private void HandleMovement(DirectionFlags inputDirection)
-    {
-        var blockedMove = CurrentSmb && !CurrentSmb.CanMove;
-        var canWalk = inputDirection != DirectionFlags.None && !blockedMove;
-        
-        CharacterAnimator.SetBool(IsWalkingAnim, canWalk);
-        if (!canWalk) return;
-
-        Vector3 dir =  inputDirection.ToVector();
-
-        _rigidbody.MovePosition(_rigidbody.position + dir.normalized * (WalkSpeed * Time.deltaTime));
     
+    protected override void HandleRotation() =>
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            CurrentDirection.ToRotation(),
+            TurnSpeed * Time.deltaTime);
+    
+    protected override void HandleMovement(DirectionFlags inputDirection)
+    {
+        if (CurrentSmb && CurrentSmb.IsLongState)
+        {
+            State = CharacterStates.Stand;
+            return;
+        }
+
+        Rigidbody.MovePosition(Rigidbody.position + inputDirection.ToVector3() * (WalkSpeed * Time.deltaTime));
     }
 
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
-    
+
     private void OnTriggerEnter(Collider other) => EntityEnter(other);
     private void OnTriggerExit(Collider other) => EntityExit(other);
+    private void OnCollisionEnter(Collision other) => EntityEnter(other.collider);
+    private void OnCollisionExit(Collision other) => EntityExit(other.collider);
 
-    private void OnCollisionEnter(Collision other)=> EntityEnter(other.collider);
+}
 
-    private void OnCollisionExit(Collision other)=> EntityExit(other.collider);
+
+public enum CharacterStates
+{
+    Stand,
+    Poop,
+    Bed,
+    Play,
 }

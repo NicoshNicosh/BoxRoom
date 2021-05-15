@@ -20,7 +20,9 @@ public static class DirectionUtils
 {
 
 
-    public static Vector2 ToVector(this DirectionFlags inputDirection)
+    public static Vector3 ToVector3(this DirectionFlags inputDirection) => ToVector2(inputDirection);
+    
+    public static Vector2 ToVector2(this DirectionFlags inputDirection)
     {
         switch (inputDirection)
         {

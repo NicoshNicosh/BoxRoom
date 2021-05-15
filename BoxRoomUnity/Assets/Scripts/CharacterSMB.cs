@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterSMB : StateMachineBehaviour
 {
@@ -8,8 +6,10 @@ public class CharacterSMB : StateMachineBehaviour
 
     public bool CanAttack = false;
     public bool CanMove = false;
+    public bool CanInteract = true;
+    public bool IsLongState = false;
 
-    
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Character.CurrentSmb = this;

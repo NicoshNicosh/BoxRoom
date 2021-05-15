@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    public BaseCharacter Character;
+    public CharacterGame Character;
     public float Force = 1;
 
 
@@ -21,7 +21,9 @@ public class Sword : MonoBehaviour
         entity.CharAttack(Character);
         if(!other.otherRigidbody) return;
         var pt = other.GetContact(0);
-        other.otherRigidbody.AddForceAtPosition(pt.normal * Force, pt.point);
+        var rb = other.rigidbody;
+        var dir = pt.point - Character.Rigidbody.position;
+        if (rb) rb.AddForceAtPosition(dir.normalized * Force, pt.point);
         
     }
 }

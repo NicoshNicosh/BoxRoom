@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
-    public bool ModeActive;
+    public abstract bool ModeActive { get; }
     public Animator CharacterAnimator;
     public DirectionFlags InputDirection;
     public DirectionFlags CurrentDirection = DirectionFlags.Up;
-    public List<ActionPoint> actionPoints;
-    public ActionPoint CurrentAp;
-    public CharacterSMB CurrentSMB;
-
+    [ReadOnly] public ActionPoint CurrentAp;
+    private List<ActionPoint> ActionPoints = new List<ActionPoint>();
+    [HideInInspector] public CharacterSMB CurrentSMB;
+    public UnityEvent OnEscPressed;
 
     protected void HandleActionPoints()
     {
-        var pt = actionPoints
+        var pt = ActionPoints
             .Where(it => it.IsCharValid(this))
             .OrderBy(it => Vector2.Distance(it.transform.position, transform.position))
             .FirstOrDefault();
@@ -24,21 +25,28 @@ public abstract class BaseCharacter : MonoBehaviour
         {
             if (CurrentAp) CurrentAp.CharExit(this);
             CurrentAp = pt;
-            if(CurrentAp) CurrentAp.CharEnter(this);
+            if (CurrentAp) CurrentAp.CharEnter(this);
         }
-
     }
-    
+
+    protected void HandleEscPressed()
+    {
+        if (ModeActive && Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnEscPressed.Invoke();
+        }
+    }
+
     protected void TriggerEntered(Component other)
     {
         var ap = other.GetComponent<ActionPoint>();
-        actionPoints.Add(ap);
+        ActionPoints.Add(ap);
     }
 
     protected void TriggerExited(Component other)
     {
         var ap = other.GetComponent<ActionPoint>();
-        actionPoints.Remove(ap);
+        ActionPoints.Remove(ap);
     }
 
     protected DirectionFlags GetInputDirection()

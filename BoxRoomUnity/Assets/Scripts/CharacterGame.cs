@@ -27,10 +27,9 @@ public class CharacterGame : BaseCharacter
 
         HandleMovement(InputDirection);
         HandleRotation();
-
+        HandleEscPressed();
         HandleActionPoints();
         HandleAttack();
-        HandleEscape();
     }
 
     private void HandleRotation()
@@ -45,15 +44,6 @@ public class CharacterGame : BaseCharacter
         {
             if (CurrentAp) CurrentAp.CharInteract();
             else CharacterAnimator.SetTrigger(AttackAnim);
-        }
-    }
-
-    private void HandleEscape()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ModeActive = false;
-            RealCharacter.ModeActive = true;
         }
     }
 
@@ -87,4 +77,5 @@ public class CharacterGame : BaseCharacter
 
     private void OnTriggerExit2D(Collider2D other) => TriggerExited(other);
 
+    public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.GameMode;
 }

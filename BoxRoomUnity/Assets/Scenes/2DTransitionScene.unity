@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 885999140}
   - component: {fileID: 885999141}
   m_Layer: 0
-  m_Name: Square
+  m_Name: RoomBGSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,6 +280,12 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!95 &1307650477 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1394917126265259482, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+    type: 3}
+  m_PrefabInstance: {fileID: 370724908287495859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1432405417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8832727047033187481, guid: cda6a69d34da24b2791c59bbde604294,
@@ -316,6 +322,11 @@ PrefabInstance:
       propertyPath: GameCharacter
       value: 
       objectReference: {fileID: 1682235101}
+    - target: {fileID: 370724908317405071, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: CharacterAnimator
+      value: 
+      objectReference: {fileID: 1307650477}
     - target: {fileID: 370724910146202060, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
         type: 3}
       propertyPath: m_RootOrder
@@ -381,6 +392,41 @@ PrefabInstance:
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 8832727046868194330}
+    - target: {fileID: 1047595886061054405, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5595ad9a1ad544cebb01fa98d1e1367, type: 2}
+    - target: {fileID: 1084277830983219269, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5595ad9a1ad544cebb01fa98d1e1367, type: 2}
+    - target: {fileID: 1251665862664714405, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5595ad9a1ad544cebb01fa98d1e1367, type: 2}
+    - target: {fileID: 1394917126265259482, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1094c16d5bc3748188639c0637220cf6, type: 2}
+    - target: {fileID: 3271195406504491801, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5595ad9a1ad544cebb01fa98d1e1367, type: 2}
+    - target: {fileID: 5002712584242306366, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5595ad9a1ad544cebb01fa98d1e1367, type: 2}
+    - target: {fileID: 5243574144930120570, guid: 5758da1bc9e8e49d4af57c2f36fe2263,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fd3008d37c7064ba3959e4cbf30ca01e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5758da1bc9e8e49d4af57c2f36fe2263, type: 3}
 --- !u!1001 &545924476474259898
@@ -455,6 +501,26 @@ PrefabInstance:
       propertyPath: RealCharacter
       value: 
       objectReference: {fileID: 572229790}
+    - target: {fileID: 1161681341401994296, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.2264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161681341401994296, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161681341401994296, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.119797185
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161681341401994296, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3ec8152b5f7a4ef5b75bf5e636167a2, type: 2}
     - target: {fileID: 1315251676751713141, guid: ee96030734f4a41ebacbbeea8d9f039e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -469,6 +535,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315251676751713142, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315251676751713142, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315251676751713142, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791901878689063228, guid: ee96030734f4a41ebacbbeea8d9f039e,
+        type: 3}
+      propertyPath: m_Name
+      value: GameWorldBG
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee96030734f4a41ebacbbeea8d9f039e, type: 3}
@@ -558,6 +644,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112319255448520263, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: m_AmplitudeGain
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112319255448520263, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: m_FrequencyGain
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7124080530637313508, guid: cda6a69d34da24b2791c59bbde604294,
         type: 3}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.XR;
@@ -50,12 +51,6 @@ public class CharacterGame : BaseCharacter
         CharacterAnimator.SetInteger(DirectionAnim, CurrentDirection.ToWasdNumer());
     }
     
-
-    private void HandleCollection(Collectible collectible)
-    {
-        CharacterAnimator.SetTrigger(CollectAnim);
-    }
-
     private void HandleMovement(DirectionFlags inputDirection)
     {
 
@@ -69,16 +64,11 @@ public class CharacterGame : BaseCharacter
         Rigidbody.MovePosition(Rigidbody.position + dir * (WalkSpeed * Time.deltaTime));
 
     }
+    public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.GameMode;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        var collectible = other.GetComponent<Collectible>();
-        if (other.GetComponent<Collectible>()) HandleCollection(collectible);
-        EntityEnter(other);
-    }
-
-
+    private void OnTriggerEnter2D(Collider2D other)=> EntityEnter(other);
     private void OnTriggerExit2D(Collider2D other) => EntityExit(other);
 
-    public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.GameMode;
+    private void OnCollisionEnter2D(Collision2D other) => EntityEnter(other.collider);
+    private void OnCollisionExit2D(Collision2D other)=>EntityExit(other.collider);
 }

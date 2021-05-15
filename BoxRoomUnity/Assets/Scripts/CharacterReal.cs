@@ -65,7 +65,11 @@ public class CharacterReal : BaseCharacter
     }
 
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
-
+    
     private void OnTriggerEnter(Collider other) => EntityEnter(other);
     private void OnTriggerExit(Collider other) => EntityExit(other);
+
+    private void OnCollisionEnter(Collision other)=> EntityEnter(other.collider);
+
+    private void OnCollisionExit(Collision other)=> EntityExit(other.collider);
 }

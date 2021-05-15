@@ -130,7 +130,7 @@ MonoBehaviour:
   isGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: 2b6f177cda240478eb064797173052bb, type: 2}
 --- !u!1 &1181198293000705533
 GameObject:
@@ -583,7 +583,7 @@ MonoBehaviour:
   DayStartTime: 0
   DayProgress: 0
   DayDuration: 60
-  Mode: 1
+  Mode: 2
 --- !u!1 &8832727046848474439
 GameObject:
   m_ObjectHideFlags: 0

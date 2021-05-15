@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748c9558b880f064baad050fdfb3b14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoopPrefab: {fileID: 0}
+  Character: {fileID: 0}
 --- !u!1 &4917239666297858510
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,14 +681,13 @@ MonoBehaviour:
   CharacterAnimator: {fileID: 8850093483524056358}
   InputDirection: 0
   CurrentDirection: 2
-  CurrentAp: {fileID: 0}
-  CurrentSMB: {fileID: 0}
-  OnEscPressed:
-    m_PersistentCalls:
-      m_Calls: []
-  GameCharacter: {fileID: 0}
+  CurrentEntity: {fileID: 0}
+  Rigidbody: {fileID: 7831602287590035318}
   WalkSpeed: 1
   TurnSpeed: 10
+  State: 0
+  LastTimeStanding: 0
+  TimeInState: 0
 --- !u!1 &8902385761598912921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,18 +1809,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3625b0277ba734948a17a02bb3ea558e, type: 3}
---- !u!4 &7410708389044127461 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5576420129199644242, guid: 3625b0277ba734948a17a02bb3ea558e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3151196527678183607}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8850093483524056358 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 3625b0277ba734948a17a02bb3ea558e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3151196527678183607}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3184596851375390556 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3625b0277ba734948a17a02bb3ea558e,
@@ -1831,6 +1818,18 @@ Transform:
 --- !u!1 &2844627184016877030 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3625b0277ba734948a17a02bb3ea558e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3151196527678183607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7410708389044127461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5576420129199644242, guid: 3625b0277ba734948a17a02bb3ea558e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3151196527678183607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8850093483524056358 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 3625b0277ba734948a17a02bb3ea558e,
     type: 3}
   m_PrefabInstance: {fileID: 3151196527678183607}
   m_PrefabAsset: {fileID: 0}

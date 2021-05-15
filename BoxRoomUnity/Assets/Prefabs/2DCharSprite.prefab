@@ -124,6 +124,7 @@ MonoBehaviour:
   InputDirection: 0
   CurrentDirection: 2
   CurrentEntity: {fileID: 0}
+  Rigidbody: {fileID: 1682235102}
   WalkSpeed: 3
   OnInteract:
     m_PersistentCalls:

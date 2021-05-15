@@ -12,11 +12,11 @@ public class CharacterSMB : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Character.CurrentSmb = this;
+        Character.SMBs.Add(this);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(Character.CurrentSmb == this) Character.CurrentSmb = null;
+        Character.SMBs.Remove(this);
     }
 }

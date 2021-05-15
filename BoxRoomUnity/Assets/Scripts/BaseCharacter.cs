@@ -17,7 +17,9 @@ public abstract class BaseCharacter : MonoBehaviour
     [ReadOnly] public BaseEntity CurrentEntity;
     
     private readonly List<BaseEntity> _entities = new List<BaseEntity>();
-    internal CharacterSMB CurrentSmb;
+    protected CharacterSMB CurrentSmb => SMBs.LastOrDefault();
+    public readonly List<CharacterSMB> SMBs = new List<CharacterSMB>();
+
     public abstract bool ModeActive { get; }
 
 
@@ -54,7 +56,7 @@ public abstract class BaseCharacter : MonoBehaviour
             var canAttack = !CurrentSmb || CurrentSmb.CanAttack;
             if (canAttack) HandleAttack();
 
-            var canInteract =  !CurrentSmb || CurrentSmb.CanAttack;
+            var canInteract =  !CurrentSmb || CurrentSmb.CanInteract;
             if (canInteract) HandleInteraction();
         }
     }

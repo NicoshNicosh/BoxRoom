@@ -226,32 +226,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &545924476252365923
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315251676751713136}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0049698055, y: -0.30316067}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.17500526, y: 0.14187336}
-  m_EdgeRadius: 0
 --- !u!1 &2791901878689063228
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +237,7 @@ GameObject:
   - component: {fileID: 2597159490108149127}
   - component: {fileID: 1161681341401994296}
   m_Layer: 0
-  m_Name: BG
+  m_Name: GameWorldBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,7 +277,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c3ec8152b5f7a4ef5b75bf5e636167a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -326,7 +300,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.119797185, g: 0, b: 0.2264151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -343,22 +317,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 545924475908166400}
     m_Modifications:
-    - target: {fileID: 1682235101, guid: 371c255653ab05d47a72b4bcb9551117, type: 3}
-      propertyPath: WalkSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1682235101, guid: 371c255653ab05d47a72b4bcb9551117, type: 3}
-      propertyPath: RealCharacter
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1682235101, guid: 371c255653ab05d47a72b4bcb9551117, type: 3}
-      propertyPath: CharacterAnimator
-      value: 
-      objectReference: {fileID: 1315251676751713143}
-    - target: {fileID: 1682235102, guid: 371c255653ab05d47a72b4bcb9551117, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1572658991231759376, guid: 371c255653ab05d47a72b4bcb9551117,
         type: 3}
       propertyPath: m_Name
@@ -372,17 +330,17 @@ PrefabInstance:
     - target: {fileID: 1572658991231759381, guid: 371c255653ab05d47a72b4bcb9551117,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6693587
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572658991231759381, guid: 371c255653ab05d47a72b4bcb9551117,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5925982
+      value: 2.11
       objectReference: {fileID: 0}
     - target: {fileID: 1572658991231759381, guid: 371c255653ab05d47a72b4bcb9551117,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.9223
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572658991231759381, guid: 371c255653ab05d47a72b4bcb9551117,
         type: 3}
@@ -421,21 +379,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 371c255653ab05d47a72b4bcb9551117, type: 3}
---- !u!1 &1315251676751713136 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1572658991231759376, guid: 371c255653ab05d47a72b4bcb9551117,
-    type: 3}
-  m_PrefabInstance: {fileID: 545924476940101472}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1315251676751713141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1572658991231759381, guid: 371c255653ab05d47a72b4bcb9551117,
-    type: 3}
-  m_PrefabInstance: {fileID: 545924476940101472}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1315251676751713143 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1572658991231759383, guid: 371c255653ab05d47a72b4bcb9551117,
     type: 3}
   m_PrefabInstance: {fileID: 545924476940101472}
   m_PrefabAsset: {fileID: 0}

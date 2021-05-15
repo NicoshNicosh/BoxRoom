@@ -58,8 +58,6 @@ public class CharacterReal : BaseCharacter
     
     }
 
-
-
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
 
     private void OnTriggerEnter(Collider other) => TriggerEntered(other);

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3887164363102400373}
   - component: {fileID: 8651409498350809642}
   - component: {fileID: 8651409498350809643}
+  - component: {fileID: 3326019667815597320}
   m_Layer: 0
   m_Name: ActionPoint
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3850584503262443529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.362, y: -0, z: 0.46}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.03605897, y: 0.10793322, z: 0.036058985}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,11 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f135991fe65b247469cea5e4455b1f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ValidDirections: 255
+  LastCharacter: {fileID: 0}
+  ValidDirections: -1
   OnEnter:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
         m_MethodName: SetTrigger
         m_Mode: 5
         m_Arguments:
@@ -69,13 +72,14 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: TurnOn
+          m_StringArgument: OpenToilet
           m_BoolArgument: 0
         m_CallState: 2
   OnExit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
         m_MethodName: SetTrigger
         m_Mode: 5
         m_Arguments:
@@ -86,6 +90,49 @@ MonoBehaviour:
           m_StringArgument: Leave
           m_BoolArgument: 0
         m_CallState: 2
-  OnInteract:
+  OnAttack:
     m_PersistentCalls:
       m_Calls: []
+  audioSource: {fileID: 0}
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cheem
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3326019667815597320}
+        m_TargetAssemblyTypeName: ToiletSounds, Assembly-CSharp
+        m_MethodName: InteractWithToilet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  RootPoints: []
+--- !u!114 &3326019667815597320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850584503262443529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2e921a8a5cb13449988434af84a2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toiletSound1: {fileID: 0}
+  toiletSound2: {fileID: 0}

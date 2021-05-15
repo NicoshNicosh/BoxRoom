@@ -24,7 +24,6 @@ public class ActionPoint : MonoBehaviour
     public void CharExit(BaseCharacter characterReal)
     {
         currentCharacter = null;
-
         OnExit.Invoke();
 
     }

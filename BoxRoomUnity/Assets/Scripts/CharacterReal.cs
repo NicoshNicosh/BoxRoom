@@ -28,16 +28,9 @@ public class CharacterReal : BaseCharacter
         HandleEscPressed();
         HandleActionPoints();
         HandleInteraction();
+        HandleAttack();
     }
 
-    private void HandleInteraction()
-    {
-        if (CurrentAp && Input.GetKeyDown(KeyCode.Space))
-        {
-            CurrentAp.CharInteract();
-        }
-    }
-    
     private void HandleRotation()
     {
         transform.rotation = Quaternion.Slerp(

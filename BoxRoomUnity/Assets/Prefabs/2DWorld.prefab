@@ -250,6 +250,7 @@ MonoBehaviour:
           m_StringArgument: Attack
           m_BoolArgument: 0
         m_CallState: 2
+  audioSource: {fileID: 0}
 --- !u!1 &545924475908166403
 GameObject:
   m_ObjectHideFlags: 0

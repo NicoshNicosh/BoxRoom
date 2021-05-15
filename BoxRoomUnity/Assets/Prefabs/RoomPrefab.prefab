@@ -68,7 +68,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365733250}
   m_LocalRotation: {x: 0.03934801, y: 0.70722777, z: 0.026175978, w: 0.70540446}
-  m_LocalPosition: {x: -0.015, y: -0.149, z: 0.44}
+  m_LocalPosition: {x: -0.009, y: 0.267, z: 0.483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3887164363956213708}
@@ -456,6 +456,7 @@ Transform:
   - {fileID: 9156200966064507230}
   - {fileID: 1338024004222860513}
   - {fileID: 8912571301863754960}
+  - {fileID: 2645656383165287387}
   m_Father: {fileID: 8461734313279807768}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1593,7 +1594,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0.9696946, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.1
   m_Range: 12
   m_SpotAngle: 161.19627
   m_InnerSpotAngle: 21.80208
@@ -1993,6 +1994,36 @@ Transform:
   m_Father: {fileID: 5854463700605859133}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7961009707022736491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2645656383165287387}
+  m_Layer: 0
+  m_Name: ToiletPt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2645656383165287387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7961009707022736491}
+  m_LocalRotation: {x: 0.19840747, y: -0.69364053, z: -0.6603505, w: 0.2084096}
+  m_LocalPosition: {x: -0.0026, y: 0.0039, z: -0.0006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2303331507028350702}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -56.449, y: -94.255, z: -84.899}
 --- !u!1 &8255966311960282100
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,6 +2697,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
         type: 3}
+      propertyPath: RootPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
+        type: 3}
+      propertyPath: RootPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 2645656383165287387}
+    - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
+        type: 3}
       propertyPath: OnExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3006701744028122913}
@@ -2676,9 +2717,6 @@ PrefabInstance:
       objectReference: {fileID: 3006701744028122913}
     - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
         type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1527143582}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}

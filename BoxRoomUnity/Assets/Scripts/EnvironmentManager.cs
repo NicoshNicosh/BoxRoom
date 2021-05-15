@@ -34,12 +34,15 @@ public class EnvironmentManager : MonoBehaviour
 
     public CharacterModes Mode => _mode;
 
+    public event Action<CharacterModes> OnModeChanged;
+
 
     public void EnterGame()
     {
         if (Time.frameCount == DebounceFrame) return;
         DebounceFrame = Time.frameCount;
         _mode = CharacterModes.GameMode;
+        if (OnModeChanged != null) OnModeChanged(_mode);
     }
 
     public void EnterRoom()
@@ -47,6 +50,7 @@ public class EnvironmentManager : MonoBehaviour
         if (Time.frameCount == DebounceFrame) return;
         DebounceFrame = Time.frameCount;
         _mode = CharacterModes.RoomMode;
+        if (OnModeChanged != null) OnModeChanged(_mode);
     }
 
 
@@ -55,6 +59,7 @@ public class EnvironmentManager : MonoBehaviour
         if (Time.frameCount == DebounceFrame) return;
         DebounceFrame = Time.frameCount;
         _mode = CharacterModes.DreamMode;
+        if (OnModeChanged != null) OnModeChanged(_mode);
     }
     
     private void Update()

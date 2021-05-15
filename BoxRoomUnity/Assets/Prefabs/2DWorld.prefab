@@ -580,7 +580,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 59f8a0647b4ae47ab90c94c909f16c68, type: 3}
-  m_Color: {r: 0, g: 0.047058824, b: 0.27450982, a: 1}
+  m_Color: {r: 0.1882353, g: 0.99607843, b: 0.99607843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -700,7 +700,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d50e7bc6076964df1a59b04098318f8e, type: 3}
-  m_Color: {r: 0, g: 0.70980394, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -783,7 +783,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 59f8a0647b4ae47ab90c94c909f16c68, type: 3}
-  m_Color: {r: 0, g: 0.047058824, b: 0.27450982, a: 1}
+  m_Color: {r: 0.1882353, g: 0.99607843, b: 0.99607843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -810,7 +810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2341464567350412716
 Transform:
   m_ObjectHideFlags: 0
@@ -985,7 +985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2240544353931504320
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,7 +1108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3894235361320059978
 Transform:
   m_ObjectHideFlags: 0
@@ -1635,21 +1635,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CollectFile
-      objectReference: {fileID: 0}
-    - target: {fileID: 2884980259582575675, guid: 90b5fa01b3684479fb6637c807fb4526,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2884980259582575675, guid: 90b5fa01b3684479fb6637c807fb4526,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.70980394
-      objectReference: {fileID: 0}
-    - target: {fileID: 2884980259582575675, guid: 90b5fa01b3684479fb6637c807fb4526,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b5fa01b3684479fb6637c807fb4526, type: 3}

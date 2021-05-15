@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.XR;
 
 public class CharacterGame : BaseCharacter
 {
     public CharacterReal RealCharacter;
-    private static readonly int AttackAnim = Animator.StringToHash("Attack");
     private static readonly int CollectAnim = Animator.StringToHash("Collect");
     private static readonly int IsWalkingAnim = Animator.StringToHash("IsWalking");
 
@@ -29,6 +29,7 @@ public class CharacterGame : BaseCharacter
         HandleRotation();
         HandleEscPressed();
         HandleActionPoints();
+        HandleInteraction();
         HandleAttack();
     }
 
@@ -36,17 +37,7 @@ public class CharacterGame : BaseCharacter
     {
         CharacterAnimator.SetInteger(DirectionAnim, CurrentDirection.ToWasdNumer());
     }
-
-    private void HandleAttack()
-    {
-
-        if (ModeActive && Input.GetKeyDown(KeyCode.Space))
-        {
-            if (CurrentAp) CurrentAp.CharInteract();
-            else CharacterAnimator.SetTrigger(AttackAnim);
-        }
-    }
-
+    
 
     private void HandleCollection(Collectible collectible)
     {

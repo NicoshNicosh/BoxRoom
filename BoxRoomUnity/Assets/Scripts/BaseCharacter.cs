@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public abstract class BaseCharacter : MonoBehaviour
 {
+
+    private static readonly int AttackAnim = Animator.StringToHash("Attack");
+
     public abstract bool ModeActive { get; }
     public Animator CharacterAnimator;
     public DirectionFlags InputDirection;
@@ -37,6 +40,23 @@ public abstract class BaseCharacter : MonoBehaviour
         }
     }
 
+    protected void HandleInteraction()
+    {
+        if (ModeActive && CurrentAp && Input.GetKeyDown(KeyCode.Return))
+        {
+            CurrentAp.CharInteract();
+        }
+    }
+
+    protected void HandleAttack()
+    {
+        var ShiftPressed = Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift);
+        if (ModeActive && ShiftPressed)
+        {
+            CharacterAnimator.SetTrigger(AttackAnim); //Todo: Prevent Double attacks 
+        }
+    }
+
     protected void TriggerEntered(Component other)
     {
         var ap = other.GetComponent<ActionPoint>();
@@ -52,10 +72,10 @@ public abstract class BaseCharacter : MonoBehaviour
     protected DirectionFlags GetInputDirection()
     {
         if (!ModeActive) return DirectionFlags.None;
-        var up = Input.GetKey(KeyCode.W);
-        var left = Input.GetKey(KeyCode.A);
-        var down = Input.GetKey(KeyCode.S);
-        var right = Input.GetKey(KeyCode.D);
+        var up = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+        var left = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+        var down = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+        var right = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
 
         if (up && left) return DirectionFlags.UpLeft;
         if (up && right) return DirectionFlags.UpRight;

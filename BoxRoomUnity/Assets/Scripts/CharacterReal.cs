@@ -28,16 +28,9 @@ public class CharacterReal : BaseCharacter
         HandleEscPressed();
         HandleActionPoints();
         HandleInteraction();
+        HandleAttack();
     }
 
-    private void HandleInteraction()
-    {
-        if (CurrentAp && Input.GetKeyDown(KeyCode.Space))
-        {
-            CurrentAp.CharInteract();
-        }
-    }
-    
     private void HandleRotation()
     {
         transform.rotation = Quaternion.Slerp(
@@ -57,8 +50,6 @@ public class CharacterReal : BaseCharacter
         CharacterAnimator.SetBool(IsWalkingAnim, true);
     
     }
-
-
 
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
 

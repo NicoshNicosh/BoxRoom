@@ -9,6 +9,7 @@ public class ActionPoint : MonoBehaviour
     private BaseCharacter currentCharacter;
     [Range(0,1)] float AngleSensitivity;
     [EnumFlag] public DirectionFlags ValidDirections = DirectionFlags.Everything;
+    public List<Transform> RootPoints = new List<Transform>();
 
     public UnityEvent OnEnter;
     public UnityEvent OnExit;
@@ -23,7 +24,6 @@ public class ActionPoint : MonoBehaviour
     public void CharExit(BaseCharacter characterReal)
     {
         currentCharacter = null;
-
         OnExit.Invoke();
 
     }

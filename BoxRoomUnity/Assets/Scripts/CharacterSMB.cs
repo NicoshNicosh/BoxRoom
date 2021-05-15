@@ -13,7 +13,6 @@ public class CharacterSMB : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Character.CurrentSMB = this;
-        Debug.Log("Cheem");
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

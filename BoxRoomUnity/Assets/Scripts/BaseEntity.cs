@@ -15,16 +15,19 @@ public abstract class BaseEntity : MonoBehaviour
 
     public void CharEnter(BaseCharacter characterReal)
     {
+        LastCharacter = characterReal;
         OnEnter.Invoke();
     }
     
     public void CharExit(BaseCharacter characterReal)
     {
+        LastCharacter = characterReal;
         OnExit.Invoke();
     }
     
     public void CharAttack(BaseCharacter characterReal)
     {
+        LastCharacter = characterReal;
         OnAttack.Invoke();
     }
 

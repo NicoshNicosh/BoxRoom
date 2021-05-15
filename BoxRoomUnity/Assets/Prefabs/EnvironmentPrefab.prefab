@@ -583,7 +583,7 @@ MonoBehaviour:
   DayStartTime: 0
   DayProgress: 0
   DayDuration: 60
-  _mode: 1
+  _mode: 2
 --- !u!1 &8832727046848474439
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8832727047033187429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -12}
+  m_LocalPosition: {x: 0, y: 0, z: -10.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 885999140}
@@ -814,11 +814,29 @@ MonoBehaviour:
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
+    m_Style: 7
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 28.517647
+        outSlope: 28.517647
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.025
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0.0033814893
+        outSlope: 0.0033814893
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.6958333
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

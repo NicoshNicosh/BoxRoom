@@ -25,6 +25,7 @@ public class CharacterReal : BaseCharacter
         
         HandleMovement(InputDirection);
         HandleRotation();
+        HandleEscPressed();
         HandleActionPoints();
         HandleInteraction();
     }
@@ -36,14 +37,7 @@ public class CharacterReal : BaseCharacter
             CurrentAp.CharInteract();
         }
     }
-
-    [UsedImplicitly] //Event Call
-    public void EnterGame()
-    {
-        GameCharacter.ModeActive = true;
-        this.ModeActive = false;
-    }
-
+    
     private void HandleRotation()
     {
         transform.rotation = Quaternion.Slerp(
@@ -63,6 +57,10 @@ public class CharacterReal : BaseCharacter
         CharacterAnimator.SetBool(IsWalkingAnim, true);
     
     }
+
+
+
+    public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
 
     private void OnTriggerEnter(Collider other) => TriggerEntered(other);
     private void OnTriggerExit(Collider other) => TriggerExited(other);

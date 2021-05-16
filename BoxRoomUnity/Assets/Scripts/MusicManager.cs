@@ -1,26 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public EnvironmentManager environmentManager;
+    private static MusicManager Instance;
+
     public AudioSource roomMusic, gameMusic, dreamMusic;
     private Dictionary<CharacterModes, AudioSource> audioSources = new Dictionary<CharacterModes, AudioSource>();
     private AudioSource currentSource;
+
+    private CharacterModes oldMode;
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
+        if (Instance)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
         InitializeAudioSources();
 
-        OnModeChanged(environmentManager.Mode);
-        environmentManager.OnModeChanged += OnModeChanged;
+        oldMode = EnvironmentManager.Instance.Mode;
+        OnModeChanged(oldMode);
+        DontDestroyOnLoad(this.gameObject);
     }
 
+    
     // Update is called once per frame
     void Update()
     {
-        
+        var newMode = EnvironmentManager.Instance.Mode;
+        if (newMode != oldMode)
+        {
+            OnModeChanged(newMode);
+            oldMode = newMode;
+        }
     }
 
     private void InitializeAudioSources()

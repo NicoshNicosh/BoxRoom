@@ -20,6 +20,8 @@ public class CharacterReal : BaseCharacter
     private static readonly int IsPlayAnim = Animator.StringToHash("IsPlay");
     private static readonly int IsPoopingAnim = Animator.StringToHash("IsPooping");
     private static readonly int TimeInStateAnim = Animator.StringToHash("TimeInState");
+    private static readonly int IsTiredAnim = Animator.StringToHash("IsTired");
+    private static readonly int HasToPoopAnim = Animator.StringToHash("HasToPoop");
 
     protected override void Update()
     {
@@ -31,6 +33,9 @@ public class CharacterReal : BaseCharacter
         CharacterAnimator.SetBool(InBedAnim, State == CharacterStates.Bed);
         CharacterAnimator.SetBool(IsPlayAnim, State == CharacterStates.Play);
         CharacterAnimator.SetBool(IsPoopingAnim, State == CharacterStates.Poop);
+
+        CharacterAnimator.SetBool(HasToPoopAnim, EnvironmentManager.Instance.HasToPoop);
+        CharacterAnimator.SetBool(IsTiredAnim, EnvironmentManager.Instance.IsTired);
 
         if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
         TimeInState = Time.time - LastTimeStanding;

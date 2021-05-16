@@ -34,7 +34,7 @@ public class MusicManager : MonoBehaviour
     void Update()
     {
         var newMode = EnvironmentManager.Instance.Mode;
-        if (newMode != oldMode)
+        if (newMode != CharacterModes.UiMode && newMode != oldMode)
         {
             OnModeChanged(newMode);
             oldMode = newMode;
@@ -50,6 +50,7 @@ public class MusicManager : MonoBehaviour
 
     private void OnModeChanged(CharacterModes newMode)
 	{
+        
         Debug.Log("Mode Changed to " + newMode.ToString());
         AudioSource nextSource = audioSources[newMode];
         if (nextSource == currentSource) return;

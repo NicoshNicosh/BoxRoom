@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-using UnityEngine.XR;
 
 public class CharacterGame : BaseCharacter
 {

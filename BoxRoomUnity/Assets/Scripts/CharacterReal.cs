@@ -1,6 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterReal : BaseCharacter
 {
@@ -41,7 +39,8 @@ public class CharacterReal : BaseCharacter
         if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
         TimeInState = Time.time - LastTimeStanding;
         CharacterAnimator.SetFloat(TimeInStateAnim, TimeInState);
-
+        
+        Rigidbody.isKinematic = CurrentSmb && !CurrentSmb.CanMove;
     }
 
     protected override void HandleDream()

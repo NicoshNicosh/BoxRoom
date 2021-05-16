@@ -9673,7 +9673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b93a377f1dd2f45a3f22c4e506fc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e: {fileID: 1530484827}
+  EventSystem: {fileID: 1530484827}
+  LastObject: {fileID: 0}
 --- !u!43 &1540002828
 Mesh:
   m_ObjectHideFlags: 0

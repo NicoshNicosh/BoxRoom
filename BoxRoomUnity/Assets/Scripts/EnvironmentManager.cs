@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Object = System.Object;
 
 public enum CharacterModes
 {
@@ -45,23 +42,6 @@ public class EnvironmentManager : MonoBehaviour
 
     public int ScoreAmount;
 
-
-    [Serializable]
-    public class PotentialPoop
-    {
-        [ReadOnly]
-        public float EatTime;
-        [ReadOnly]
-        public float DigestedAmount;
-
-        public float FoodGain;
-
-        public float TimeToDigest;
-        public float TotalPoop;
-        public AnimationCurve DigestionProcess;
-
-        public PotentialPoop Clone() => (PotentialPoop)MemberwiseClone();
-    }
 
     [Header("Settings")]
     public float MinPoopToPoop = 0.5f;

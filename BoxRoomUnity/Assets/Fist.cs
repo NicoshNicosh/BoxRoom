@@ -8,17 +8,18 @@ public class Fist : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var entity = other.GetComponent<Entity2D>();
+        var entity = other.GetComponent<ActionPoint>();
         entity.CharAttack(Character);
     }
-
+    
     private void OnCollisionEnter(Collision other)
     {
-        var entity = other.collider.GetComponent<ActionPoint>();
+        var rb = other.rigidbody;
+        var entity = rb.GetComponent<ActionPoint>();
+        
         if(!entity) return;
         entity.CharAttack(Character);
         var pt = other.GetContact(0);
-        var rb = other.rigidbody;
         var dir = pt.point - Character.Rigidbody.position;
         dir.z = 0;
         if (rb) rb.AddForceAtPosition(dir.normalized * Force, pt.point);

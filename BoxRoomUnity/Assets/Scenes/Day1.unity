@@ -312,6 +312,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7215841585286211427, guid: 9374124211f989c4ba77e621b3e42ca5,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5523596dd49ef3f4c9fbf54338e63112, type: 3}
     - target: {fileID: 7215841585637051808, guid: 9374124211f989c4ba77e621b3e42ca5,
         type: 3}
       propertyPath: m_RootOrder
@@ -377,6 +382,11 @@ PrefabInstance:
       propertyPath: environmentManager
       value: 
       objectReference: {fileID: 8832727046868194330}
+    - target: {fileID: 7215841585995344182, guid: 9374124211f989c4ba77e621b3e42ca5,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e343a4c795347a146b639afea0a2158d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9374124211f989c4ba77e621b3e42ca5, type: 3}
 --- !u!1001 &350676987

@@ -50,6 +50,7 @@ public class MusicManager : MonoBehaviour
 	{
         
         Debug.Log("Mode Changed to " + newMode.ToString());
+        if (!audioSources.ContainsKey(newMode)) return;
         AudioSource nextSource = audioSources[newMode];
         if (nextSource == currentSource) return;
 

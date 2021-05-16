@@ -8,7 +8,7 @@ public class ExitSceneSMB : StateMachineBehaviour
     {
         var manager = EnvironmentManager.Instance;
         var isDeath = manager&&EnvironmentManager.Instance.FoodAmount <= 0;
-        if(isDeath) SceneManager.LoadScene(manager.DeathScene.buildIndex);
+        if(isDeath) SceneManager.LoadScene(manager.DeathScene);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

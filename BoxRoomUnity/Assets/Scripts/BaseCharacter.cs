@@ -87,7 +87,6 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Debug.Log("HandleAttack");
             CharacterAnimator.SetTrigger(AttackAnim); //Todo: Prevent Double attacks 
             PlayAttackSound();
         }
@@ -140,6 +139,5 @@ public abstract class BaseCharacter : MonoBehaviour
         attackSound.pitch = Mathf.Pow(2, (float)semitones / 12);
         noteCounter++;
         attackSound.PlayOneShot(attackSound.clip);
-        Debug.Log("PlayAttackSound");
     }
 }

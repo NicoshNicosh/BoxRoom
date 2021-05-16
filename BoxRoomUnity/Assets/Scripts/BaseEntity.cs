@@ -47,18 +47,14 @@ public abstract class BaseEntity : MonoBehaviour
     public void AddScore(int plusScore)
     {
         EnvironmentManager.Instance.ScoreAmount += plusScore;
+        EnvironmentManager.Instance.PlayCollectSound();
     }
 
     public void PlaySound(int clipNum)
     {
         if(audioSource.isPlaying) audioSource.Stop();
-
-        if (audioClips.Count <= 0)
-        {
-            audioSource.Play();
-            return;
-        }
         var clip = audioClips[clipNum];
+        // Debug.Log("PLAYING SOUND: " + name + " CLIP: " + clip.name);
         audioSource.PlayOneShot(clip);
     }
 

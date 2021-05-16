@@ -14,6 +14,8 @@ public class EnvironmentManager : MonoBehaviour
 {
     private static EnvironmentManager _instance;
 
+    public AudioSource collectCoinAudioSource;
+
     public static EnvironmentManager Instance =>
         _instance ? _instance : _instance = FindObjectOfType<EnvironmentManager>();
 
@@ -37,7 +39,14 @@ public class EnvironmentManager : MonoBehaviour
     public float PoopProgress;
     [ReadOnly] public List<PotentialPoop> PotentialPoops;
 
-    public float FoodAmount = 1;
+	internal void PlayCollectSound()
+	{
+        // if (audioSource.isPlaying) audioSource.Stop();
+        // Debug.Log("PLAYING SOUND: " + name + " CLIP: " + clip.name);
+        collectCoinAudioSource.PlayOneShot(collectCoinAudioSource.clip);
+    }
+
+	public float FoodAmount = 1;
     public float FoodLossPerSecond = .1f;
 
     public int ScoreAmount;

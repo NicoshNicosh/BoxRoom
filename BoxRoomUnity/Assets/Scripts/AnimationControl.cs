@@ -27,4 +27,9 @@ public class AnimationControl : MonoBehaviour
         if(!entity) return;
         entity.PlaySound(clipNum);
     }
+
+    public void Poop()
+    {
+        EnvironmentManager.Instance.Poop();
+    }
 }

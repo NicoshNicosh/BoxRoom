@@ -19,7 +19,8 @@ public abstract class BaseCharacter : MonoBehaviour
     private readonly List<BaseEntity> _entities = new List<BaseEntity>();
     protected CharacterSMB CurrentSmb => SMBs.LastOrDefault();
     public readonly List<CharacterSMB> SMBs = new List<CharacterSMB>();
-
+    
+    public CharacterModes Mode => EnvironmentManager.Instance.Mode;
     public abstract bool ModeActive { get; }
 
     
@@ -44,7 +45,7 @@ public abstract class BaseCharacter : MonoBehaviour
         HandleRotation();
         HandleActionPoints();
 
-        if (ModeActive)
+        if (ModeActive || Mode == CharacterModes.DreamMode)
         {
             var canAttack = !CurrentSmb || CurrentSmb.CanAttack;
             if (canAttack) HandleAttack();
@@ -52,7 +53,11 @@ public abstract class BaseCharacter : MonoBehaviour
             var canInteract =  !CurrentSmb || CurrentSmb.CanInteract;
             if (canInteract) HandleInteraction();
         }
+        
+        if (Mode == CharacterModes.DreamMode) HandleDream();
     }
+
+    protected abstract void HandleDream();
 
     protected abstract void HandleInteraction();
 

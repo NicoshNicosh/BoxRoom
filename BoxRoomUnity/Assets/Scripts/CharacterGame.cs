@@ -15,7 +15,14 @@ public class CharacterGame : BaseCharacter
     [Header("Settings")]
     public float WalkSpeed;
     [FormerlySerializedAs("OnEscPressed")] public UnityEvent OnInteract;
-    
+
+
+    protected override void HandleDream()
+    {
+        transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
+        transform.localRotation = Quaternion.identity;
+        
+    }
 
     protected override void HandleInteraction()
     {

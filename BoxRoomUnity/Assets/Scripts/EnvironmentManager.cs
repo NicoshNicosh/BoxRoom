@@ -74,7 +74,7 @@ public class EnvironmentManager : MonoBehaviour
         _mode = CharacterModes.RoomMode;
     }
     
-    public void EnterDream()
+    public void EndScene()
     {
         EnvironmentAnimator.SetTrigger(ExitSceneAnim);
     }

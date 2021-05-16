@@ -28,11 +28,12 @@ public class ActionPoint : BaseEntity
         interactCounter++;
         PlaySound(clipNum);
     }
+    
 
     public void EnterPlay() => (LastCharacter as CharacterReal)?.EnterState(CharacterStates.Play);
     public void EnterBed()=> (LastCharacter as CharacterReal)?.EnterState(CharacterStates.Bed);
     public void EnterPoop()=> (LastCharacter as CharacterReal)?.EnterState(CharacterStates.Poop);
-
+    public void EndScene() => EnvironmentManager.Instance.EndScene();
 
 
 }

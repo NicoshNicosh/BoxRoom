@@ -5,7 +5,8 @@ using UnityEngine;
 public class CharacterReal : BaseCharacter
 {
     [Header("References")]
-    [SerializeField] private Rigidbody Rigidbody;
+    [SerializeField]
+    public Rigidbody Rigidbody;
 
     [Header("Settings")]
     public float WalkSpeed;
@@ -40,6 +41,12 @@ public class CharacterReal : BaseCharacter
         if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
         TimeInState = Time.time - LastTimeStanding;
         CharacterAnimator.SetFloat(TimeInStateAnim, TimeInState);
+
+    }
+
+    protected override void HandleDream()
+    {
+        
     }
 
     public void EnterState(CharacterStates state)
@@ -81,7 +88,7 @@ public class CharacterReal : BaseCharacter
         Rigidbody.MovePosition(Rigidbody.position + inputDirection.ToVector3() * (WalkSpeed * Time.deltaTime));
     }
 
-    public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
+    public override bool ModeActive => Mode == CharacterModes.RoomMode || Mode == CharacterModes.DreamMode;
 
     private void OnTriggerEnter(Collider other) => EntityEnter(other);
     private void OnTriggerExit(Collider other) => EntityExit(other);

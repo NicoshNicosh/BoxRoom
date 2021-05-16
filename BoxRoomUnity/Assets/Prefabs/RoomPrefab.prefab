@@ -2680,13 +2680,33 @@ PrefabInstance:
     - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
         type: 3}
       propertyPath: audioClips.Array.size
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
+        type: 3}
+      propertyPath: interactionSoundLimit
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
         type: 3}
       propertyPath: audioClips.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 12754ec6bf457dd40a37e1cbfaf1c42e, type: 3}
+    - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
+        type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 42fe4c5907258c543ac301a8c06bb339, type: 3}
+    - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
+        type: 3}
+      propertyPath: audioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 367548399b8b86c438a39d6e03ebc489, type: 3}
+    - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
+        type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: fe20f9991d9baf648bc4e039d24b2f88, type: 3}
     - target: {fileID: 8651409498350809643, guid: 46e345a50e65c7c40acdd41e7ee6d3be,
         type: 3}
       propertyPath: OnExit.m_PersistentCalls.m_Calls.Array.size

@@ -26,6 +26,7 @@ public class CharacterReal : BaseCharacter
     private static readonly int TimeInStateAnim = Animator.StringToHash("TimeInState");
     private static readonly int IsTiredAnim = Animator.StringToHash("IsTired");
     private static readonly int HasToPoopAnim = Animator.StringToHash("HasToPoop");
+    private static readonly int PoopOnGroundAnim = Animator.StringToHash("PoopOnGround");
     private static readonly int FoodAmountAnim = Animator.StringToHash("FoodAmount");
     private static readonly int DieAnim = Animator.StringToHash("Die");
 
@@ -43,8 +44,8 @@ public class CharacterReal : BaseCharacter
         CharacterAnimator.SetBool(HasToPoopAnim, EnvironmentManager.Instance.HasToPoop);
         CharacterAnimator.SetBool(IsTiredAnim, EnvironmentManager.Instance.IsTired);
         var food = EnvironmentManager.Instance.FoodAmount;
+        
         CharacterAnimator.SetFloat(FoodAmountAnim, food);
-
         if(food <= 0)CharacterAnimator.SetTrigger(DieAnim);
 
         if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
@@ -52,6 +53,14 @@ public class CharacterReal : BaseCharacter
         CharacterAnimator.SetFloat(TimeInStateAnim, TimeInState);
 
         Rigidbody.isKinematic = CurrentSmb && !CurrentSmb.CanMove;
+
+        var poop = EnvironmentManager.Instance.PoopProgress;
+
+        if (poop >= 1)
+        {
+            CharacterAnimator.SetTrigger(PoopOnGroundAnim);
+            EnvironmentManager.Instance.Poop();
+        }
     }
 
     protected override void HandleDream()

@@ -53,15 +53,14 @@ public class MusicManager : MonoBehaviour
     public float pitchWaveAmp = 0.3f;
     void MessWithMusic()
 	{
-
         dreamMusic.pitch = 1f + Mathf.Sin(Time.time * pitchWaveFreq) * pitchWaveAmp;
-        dreamMusic.panStereo = Mathf.Sin(Time.time * pitchWaveFreq);
+        // dreamMusic.panStereo = Mathf.Sin(Time.time * pitchWaveFreq);
     }
 
     void CorrectMusic()
 	{
         dreamMusic.pitch = 1f;
-        dreamMusic.panStereo = 0f;
+        // dreamMusic.panStereo = 0f;
 	}
 
     private void InitializeAudioSources()

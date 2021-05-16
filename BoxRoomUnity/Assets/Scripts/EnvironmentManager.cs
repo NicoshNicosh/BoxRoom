@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum CharacterModes
@@ -39,14 +40,14 @@ public class EnvironmentManager : MonoBehaviour
     public float PoopProgress;
     [ReadOnly] public List<PotentialPoop> PotentialPoops;
 
-	internal void PlayCollectSound()
-	{
+    internal void PlayCollectSound()
+    {
         // if (audioSource.isPlaying) audioSource.Stop();
         // Debug.Log("PLAYING SOUND: " + name + " CLIP: " + clip.name);
         collectCoinAudioSource.PlayOneShot(collectCoinAudioSource.clip);
     }
 
-	public float FoodAmount = 1;
+    public float FoodAmount = 1;
     public float FoodLossPerSecond = .1f;
 
     public int ScoreAmount;
@@ -59,6 +60,7 @@ public class EnvironmentManager : MonoBehaviour
 
     [SerializeField] private CharacterModes _mode = CharacterModes.RoomMode;
     private int DebounceFrame = 0;
+    public Scene DeathScene;
 
     public CharacterModes Mode => _mode;
     public bool HasToPoop => PoopProgress > MinPoopToPoop;
@@ -76,7 +78,7 @@ public class EnvironmentManager : MonoBehaviour
         DebounceFrame = Time.frameCount;
         _mode = CharacterModes.GameMode;
     }
-    
+
     public void EnterCloset()
     {
         if (Time.frameCount == DebounceFrame) return;
@@ -114,22 +116,31 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Update()
     {
-        DayProgress = Mathf.Clamp01((Time.time - DayStartTime) / DayDuration);
-
-        foreach (var poop in PotentialPoops)
+        if (Mode != CharacterModes.DreamMode)
         {
 
-            var t = (Time.time - poop.EatTime) / poop.TimeToDigest;
-            var currentPct = poop.DigestionProcess.Evaluate(t);
-            var currentPoop = currentPct * poop.TotalPoop;
-            var lastPoop = poop.DigestedAmount;
+            DayProgress = Mathf.Clamp01((Time.time - DayStartTime) / DayDuration);
 
-            var poopDif = currentPoop - lastPoop;
-            PoopProgress = Mathf.Clamp01(PoopProgress + poopDif);
+            foreach (var poop in PotentialPoops)
+            {
+
+                var t = (Time.time - poop.EatTime) / poop.TimeToDigest;
+                var currentPct = poop.DigestionProcess.Evaluate(t);
+                var currentPoop = currentPct * poop.TotalPoop;
+                var lastPoop = poop.DigestedAmount;
+
+                var poopDif = currentPoop - lastPoop;
+                PoopProgress = Mathf.Clamp01(PoopProgress + poopDif);
+            }
+
+            FoodAmount = Mathf.Clamp01(FoodAmount - FoodLossPerSecond * Time.deltaTime);
+            ScoreText.text = ScoreAmount.ToString();
+
         }
 
-        FoodAmount = Mathf.Clamp01(FoodAmount - FoodLossPerSecond * Time.deltaTime);
-        ScoreText.text = ScoreAmount.ToString();
+        if (Mode == CharacterModes.GameMode && FoodAmount < .1) { EnterRoom(); }
+        if (Mode == CharacterModes.UiMode && FoodAmount < .01) { EnterRoom(); }
+
 
         EnvironmentAnimator.SetInteger(ModeAnim, (int)Mode);
         EnvironmentAnimator.SetFloat(DayProgressAnim, DayProgress);

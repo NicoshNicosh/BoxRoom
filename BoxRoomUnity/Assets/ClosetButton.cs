@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public abstract class ClosetButton : MonoBehaviour
 {
-    protected readonly EnvironmentManager Manager = EnvironmentManager.Instance;
+    protected  EnvironmentManager Manager => EnvironmentManager.Instance;
     public UnityEvent OnBadPurchase;
     public UnityEvent OnGoodPurchase;
     public int Cost;

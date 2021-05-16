@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9034338939681997582}
   - component: {fileID: 7712707198039653220}
   - component: {fileID: 1417159372716391626}
+  - component: {fileID: 780890356675272615}
   m_Layer: 0
   m_Name: CollectFile
   m_TagString: Untagged
@@ -182,3 +183,23 @@ MonoBehaviour:
   OnAttack:
     m_PersistentCalls:
       m_Calls: []
+  audioSource: {fileID: 0}
+--- !u!95 &780890356675272615
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592733498275185379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9e35d831975b4debbb45af427b94eee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

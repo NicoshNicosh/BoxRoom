@@ -254,7 +254,7 @@ MonoBehaviour:
   CurrentEntity: {fileID: 0}
   attackSound: {fileID: 293769139761262300}
   Rigidbody: {fileID: 1682235102}
-  WalkSpeed: 3
+  WalkSpeed: 5
   OnInteract:
     m_PersistentCalls:
       m_Calls:

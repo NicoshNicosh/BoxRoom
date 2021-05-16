@@ -57,5 +57,9 @@ public abstract class BaseEntity : MonoBehaviour
         var clip = audioClips[clipNum];
         audioSource.PlayOneShot(clip);
     }
-    
+
+    public void DestroyThis()
+    {
+        Destroy(gameObject);
+    }
 }

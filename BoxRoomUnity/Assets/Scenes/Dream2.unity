@@ -198,6 +198,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7215841585637051811, guid: 9374124211f989c4ba77e621b3e42ca5,
         type: 3}
+      propertyPath: pitchWaveAmp
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215841585637051811, guid: 9374124211f989c4ba77e621b3e42ca5,
+        type: 3}
+      propertyPath: pitchWaveFreq
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215841585637051811, guid: 9374124211f989c4ba77e621b3e42ca5,
+        type: 3}
       propertyPath: environmentManager
       value: 
       objectReference: {fileID: 8832727046868194330}

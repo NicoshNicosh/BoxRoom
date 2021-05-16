@@ -26,6 +26,9 @@ public class CharacterReal : BaseCharacter
     private static readonly int TimeInStateAnim = Animator.StringToHash("TimeInState");
     private static readonly int IsTiredAnim = Animator.StringToHash("IsTired");
     private static readonly int HasToPoopAnim = Animator.StringToHash("HasToPoop");
+    private static readonly int PoopOnGroundAnim = Animator.StringToHash("PoopOnGround");
+    private static readonly int FoodAmountAnim = Animator.StringToHash("FoodAmount");
+    private static readonly int DieAnim = Animator.StringToHash("Die");
 
     protected override void Update()
     {
@@ -40,17 +43,29 @@ public class CharacterReal : BaseCharacter
 
         CharacterAnimator.SetBool(HasToPoopAnim, EnvironmentManager.Instance.HasToPoop);
         CharacterAnimator.SetBool(IsTiredAnim, EnvironmentManager.Instance.IsTired);
+        var food = EnvironmentManager.Instance.FoodAmount;
+        
+        CharacterAnimator.SetFloat(FoodAmountAnim, food);
+        if(food <= 0)CharacterAnimator.SetTrigger(DieAnim);
 
         if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
         TimeInState = Time.time - LastTimeStanding;
         CharacterAnimator.SetFloat(TimeInStateAnim, TimeInState);
-        
+
         Rigidbody.isKinematic = CurrentSmb && !CurrentSmb.CanMove;
+
+        var poop = EnvironmentManager.Instance.PoopProgress;
+
+        if (poop >= 1)
+        {
+            CharacterAnimator.SetTrigger(PoopOnGroundAnim);
+            EnvironmentManager.Instance.Poop();
+        }
     }
 
     protected override void HandleDream()
     {
-        
+
     }
 
     public void EnterState(CharacterStates state)
@@ -68,19 +83,19 @@ public class CharacterReal : BaseCharacter
             State = CharacterStates.Stand;
             return;
         }
-        
+
         if (CurrentEntity is ActionPoint point)
         {
             point.CharInteract();
         }
     }
-    
+
     protected override void HandleRotation() =>
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             CurrentDirection.ToRotation(),
             TurnSpeed * Time.deltaTime);
-    
+
     protected override void HandleMovement(DirectionFlags inputDirection)
     {
         if (CurrentSmb && CurrentSmb.IsLongState)
@@ -94,7 +109,7 @@ public class CharacterReal : BaseCharacter
 
     public override bool ModeActive => Mode == CharacterModes.RoomMode || Mode == CharacterModes.DreamMode;
 
-	private void OnTriggerEnter(Collider other) => EntityEnter(other);
+    private void OnTriggerEnter(Collider other) => EntityEnter(other);
     private void OnTriggerExit(Collider other) => EntityExit(other);
     private void OnCollisionEnter(Collision other) => EntityEnter(other.collider);
     private void OnCollisionExit(Collision other) => EntityExit(other.collider);

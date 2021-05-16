@@ -168,7 +168,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5523596dd49ef3f4c9fbf54338e63112, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -300,7 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2fed68127e75e040a7cff4fcd24f326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentManager: {fileID: 0}
   roomMusic: {fileID: 7215841585995344182}
   gameMusic: {fileID: 7215841584829496910}
   dreamMusic: {fileID: 7215841585286211427}
@@ -345,7 +344,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 385351aeeb25bbd4888cfbf28aac33d2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e343a4c795347a146b639afea0a2158d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.85
   m_Pitch: 1

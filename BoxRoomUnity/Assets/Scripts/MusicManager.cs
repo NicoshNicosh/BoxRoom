@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -37,7 +38,31 @@ public class MusicManager : MonoBehaviour
             OnModeChanged(newMode);
             oldMode = newMode;
         }
+
+        if (SceneManager.GetActiveScene().name.Contains("Dream2"))
+		{
+            MessWithMusic();
+        }
+        else
+		{
+            CorrectMusic();
+        }
     }
+
+    public float pitchWaveFreq = 1f;
+    public float pitchWaveAmp = 0.3f;
+    void MessWithMusic()
+	{
+
+        dreamMusic.pitch = 1f + Mathf.Sin(Time.time * pitchWaveFreq) * pitchWaveAmp;
+        dreamMusic.panStereo = Mathf.Sin(Time.time * pitchWaveFreq);
+    }
+
+    void CorrectMusic()
+	{
+        dreamMusic.pitch = 1f;
+        dreamMusic.panStereo = 0f;
+	}
 
     private void InitializeAudioSources()
 	{
@@ -50,6 +75,7 @@ public class MusicManager : MonoBehaviour
 	{
         
         Debug.Log("Mode Changed to " + newMode.ToString());
+        if (!audioSources.ContainsKey(newMode)) return;
         AudioSource nextSource = audioSources[newMode];
         if (nextSource == currentSource) return;
 

@@ -355,9 +355,9 @@ MonoBehaviour:
   PoopSettings:
     EatTime: 0
     DigestedAmount: 0
-    FoodGain: 0.5
+    FoodGain: 0.75
     TimeToDigest: 5
-    TotalPoop: 0
+    TotalPoop: 1
     DigestionProcess:
       serializedVersion: 2
       m_Curve:
@@ -593,9 +593,9 @@ MonoBehaviour:
   PoopSettings:
     EatTime: 0
     DigestedAmount: 0
-    FoodGain: 0.5
-    TimeToDigest: 30
-    TotalPoop: 0
+    FoodGain: 0.25
+    TimeToDigest: 20
+    TotalPoop: 1
     DigestionProcess:
       serializedVersion: 2
       m_Curve:
@@ -1536,9 +1536,9 @@ MonoBehaviour:
   PoopSettings:
     EatTime: 0
     DigestedAmount: 0
-    FoodGain: 0.5
-    TimeToDigest: 30
-    TotalPoop: 0
+    FoodGain: 0.1
+    TimeToDigest: 20
+    TotalPoop: 1
     DigestionProcess:
       serializedVersion: 2
       m_Curve:

@@ -87,7 +87,14 @@ public class EnvironmentManager : MonoBehaviour
         DebounceFrame = Time.frameCount;
         _mode = CharacterModes.GameMode;
     }
+    
+    public void EnterCloset()
+    {
+        if (Time.frameCount == DebounceFrame) return;
+        DebounceFrame = Time.frameCount;
+        _mode = CharacterModes.UiMode;
 
+    }
     public void EnterRoom()
     {
         if (Time.frameCount == DebounceFrame) return;
@@ -144,4 +151,5 @@ public class EnvironmentManager : MonoBehaviour
         EnvironmentAnimator.SetBool(HasToPoopAnim, HasToPoop);
 
     }
+
 }

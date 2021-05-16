@@ -35,6 +35,7 @@ public class ActionPoint : BaseEntity
     public void EnterBed()=> (LastCharacter as CharacterReal)?.EnterState(CharacterStates.Bed);
     public void EnterPoop()=> (LastCharacter as CharacterReal)?.EnterState(CharacterStates.Poop);
     public void EndScene() => EnvironmentManager.Instance.EndScene();
+    public void EnterCloset() => EnvironmentManager.Instance.EnterCloset();
 
 
 }

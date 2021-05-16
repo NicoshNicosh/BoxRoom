@@ -5,7 +5,8 @@ using UnityEngine;
 public class CharacterReal : BaseCharacter
 {
     [Header("References")]
-    [SerializeField] private Rigidbody Rigidbody;
+    [SerializeField]
+    public Rigidbody Rigidbody;
 
     [Header("Settings")]
     public float WalkSpeed;
@@ -20,6 +21,8 @@ public class CharacterReal : BaseCharacter
     private static readonly int IsPlayAnim = Animator.StringToHash("IsPlay");
     private static readonly int IsPoopingAnim = Animator.StringToHash("IsPooping");
     private static readonly int TimeInStateAnim = Animator.StringToHash("TimeInState");
+    private static readonly int IsTiredAnim = Animator.StringToHash("IsTired");
+    private static readonly int HasToPoopAnim = Animator.StringToHash("HasToPoop");
 
     protected override void Update()
     {
@@ -32,9 +35,18 @@ public class CharacterReal : BaseCharacter
         CharacterAnimator.SetBool(IsPlayAnim, State == CharacterStates.Play);
         CharacterAnimator.SetBool(IsPoopingAnim, State == CharacterStates.Poop);
 
+        CharacterAnimator.SetBool(HasToPoopAnim, EnvironmentManager.Instance.HasToPoop);
+        CharacterAnimator.SetBool(IsTiredAnim, EnvironmentManager.Instance.IsTired);
+
         if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
         TimeInState = Time.time - LastTimeStanding;
         CharacterAnimator.SetFloat(TimeInStateAnim, TimeInState);
+
+    }
+
+    protected override void HandleDream()
+    {
+        
     }
 
     public void EnterState(CharacterStates state)
@@ -76,9 +88,9 @@ public class CharacterReal : BaseCharacter
         Rigidbody.MovePosition(Rigidbody.position + inputDirection.ToVector3() * (WalkSpeed * Time.deltaTime));
     }
 
-    public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.RoomMode;
+    public override bool ModeActive => Mode == CharacterModes.RoomMode || Mode == CharacterModes.DreamMode;
 
-    private void OnTriggerEnter(Collider other) => EntityEnter(other);
+	private void OnTriggerEnter(Collider other) => EntityEnter(other);
     private void OnTriggerExit(Collider other) => EntityExit(other);
     private void OnCollisionEnter(Collision other) => EntityEnter(other.collider);
     private void OnCollisionExit(Collision other) => EntityExit(other.collider);

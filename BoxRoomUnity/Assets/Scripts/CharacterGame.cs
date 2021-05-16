@@ -15,7 +15,14 @@ public class CharacterGame : BaseCharacter
     [Header("Settings")]
     public float WalkSpeed;
     [FormerlySerializedAs("OnEscPressed")] public UnityEvent OnInteract;
-    
+
+
+    protected override void HandleDream()
+    {
+        transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
+        transform.localRotation = Quaternion.identity;
+        
+    }
 
     protected override void HandleInteraction()
     {
@@ -32,7 +39,7 @@ public class CharacterGame : BaseCharacter
 
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.GameMode;
 
-    private void OnTriggerEnter2D(Collider2D other)=> EntityEnter(other);
+	private void OnTriggerEnter2D(Collider2D other)=> EntityEnter(other);
     private void OnTriggerExit2D(Collider2D other) => EntityExit(other);
     private void OnCollisionEnter2D(Collision2D other) => EntityEnter(other.collider);
     private void OnCollisionExit2D(Collision2D other)=>EntityExit(other.collider);

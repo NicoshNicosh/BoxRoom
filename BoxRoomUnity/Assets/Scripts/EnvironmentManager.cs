@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum CharacterModes
 {
@@ -18,7 +20,10 @@ public class EnvironmentManager : MonoBehaviour
 
     private static readonly int ModeAnim = Animator.StringToHash("Mode");
     private static readonly int DayProgressAnim = Animator.StringToHash("DayProgress");
-
+    private static readonly int IsTiredAnim = Animator.StringToHash("IsTired");
+    private static readonly int HasToPoopAnim = Animator.StringToHash("HasToPoop");
+    private static readonly int ExitSceneAnim = Animator.StringToHash("ExitScene");
+    
     [Header("References")]
     public Animator EnvironmentAnimator;
 
@@ -26,24 +31,40 @@ public class EnvironmentManager : MonoBehaviour
     [ReadOnly] public float DayStartTime;
     [ReadOnly] public float DayProgress;
 
+    [ReadOnly] public float PoopProgress;
+    [ReadOnly] public List<PotentialPoop> DigestingPoop;
+
+    [Serializable]
+    public class PotentialPoop
+    {
+        public float EatTime;
+        public float TotalPoop;
+        public float TimeToDigest;
+    }
+
     [Header("Settings")]
-    public float DayDuration;
+    public float MinPoopToPoop = 0.5f;
+    public float MinDurationToSleep = 0.8f;
+    public float DayDuration = 60;
 
     [SerializeField] private CharacterModes _mode = CharacterModes.RoomMode;
-
     private int DebounceFrame = 0;
 
     public CharacterModes Mode => _mode;
+    public bool HasToPoop => PoopProgress > MinPoopToPoop;
+    public bool IsTired => DayProgress > MinDurationToSleep;
 
-    public event Action<CharacterModes> OnModeChanged;
 
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     public void EnterGame()
     {
         if (Time.frameCount == DebounceFrame) return;
         DebounceFrame = Time.frameCount;
         _mode = CharacterModes.GameMode;
-        if (OnModeChanged != null) OnModeChanged(_mode);
     }
 
     public void EnterRoom()
@@ -51,16 +72,11 @@ public class EnvironmentManager : MonoBehaviour
         if (Time.frameCount == DebounceFrame) return;
         DebounceFrame = Time.frameCount;
         _mode = CharacterModes.RoomMode;
-        if (OnModeChanged != null) OnModeChanged(_mode);
     }
-
-
-    public void EnterDream()
+    
+    public void EndScene()
     {
-        if (Time.frameCount == DebounceFrame) return;
-        DebounceFrame = Time.frameCount;
-        _mode = CharacterModes.DreamMode;
-        if (OnModeChanged != null) OnModeChanged(_mode);
+        EnvironmentAnimator.SetTrigger(ExitSceneAnim);
     }
     
     private void Update()
@@ -68,5 +84,8 @@ public class EnvironmentManager : MonoBehaviour
         DayProgress = Mathf.Clamp01((Time.time - DayStartTime) / DayDuration);
         EnvironmentAnimator.SetInteger(ModeAnim, (int)Mode);
         EnvironmentAnimator.SetFloat(DayProgressAnim, DayProgress);
+
+        EnvironmentAnimator.SetBool(IsTiredAnim, IsTired);
+        EnvironmentAnimator.SetBool(HasToPoopAnim, HasToPoop);
     }
 }

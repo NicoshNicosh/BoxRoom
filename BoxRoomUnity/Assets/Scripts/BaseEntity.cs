@@ -11,8 +11,9 @@ public abstract class BaseEntity : MonoBehaviour
     public UnityEvent OnEnter;
     public UnityEvent OnExit;
 	public UnityEvent OnAttack;
-
+    
     public AudioSource audioSource;
+    public List<AudioClip> audioClips;
     
 
     public void CharEnter(BaseCharacter characterReal)
@@ -43,11 +44,18 @@ public abstract class BaseEntity : MonoBehaviour
         return (ValidDirections & characterReal.CurrentDirection) != 0;
     }
 
-    public void PlaySound()
-	{
-        if (audioSource != null)
-		{
+
+    public void PlaySound(int clipNum)
+    {
+        if(audioSource.isPlaying) audioSource.Stop();
+
+        if (audioClips.Count <= 0)
+        {
             audioSource.Play();
-		}
-	}
+            return;
+        }
+        var clip = audioClips[clipNum];
+        audioSource.PlayOneShot(clip);
+    }
+    
 }

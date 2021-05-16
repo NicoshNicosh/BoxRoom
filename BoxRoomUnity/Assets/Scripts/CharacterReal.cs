@@ -1,9 +1,12 @@
 ﻿using System;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class CharacterReal : BaseCharacter
 {
+
+    private static CharacterReal _instance;
+    public static CharacterReal Instance => _instance ? _instance : _instance = FindObjectOfType<CharacterReal>();
+
     [Header("References")]
     [SerializeField]
     public Rigidbody Rigidbody;
@@ -41,7 +44,8 @@ public class CharacterReal : BaseCharacter
         if (State == CharacterStates.Stand) LastTimeStanding = Time.time;
         TimeInState = Time.time - LastTimeStanding;
         CharacterAnimator.SetFloat(TimeInStateAnim, TimeInState);
-
+        
+        Rigidbody.isKinematic = CurrentSmb && !CurrentSmb.CanMove;
     }
 
     protected override void HandleDream()

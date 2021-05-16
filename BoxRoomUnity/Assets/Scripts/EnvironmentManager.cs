@@ -121,8 +121,8 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Update()
     {
-
-        SpawnableManager.Instance.gameObject.SetActive(Mode != CharacterModes.DreamMode);
+        var sm = SpawnableManager.Instance;
+        if(sm) sm.gameObject.SetActive(Mode != CharacterModes.DreamMode);
         if (Mode != CharacterModes.DreamMode)
         {
 

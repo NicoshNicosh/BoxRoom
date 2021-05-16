@@ -82,7 +82,9 @@ public abstract class BaseCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
         {
+            Debug.Log("HandleAttack");
             CharacterAnimator.SetTrigger(AttackAnim); //Todo: Prevent Double attacks 
+            PlayAttackSound();
         }
     }
     
@@ -116,4 +118,23 @@ public abstract class BaseCharacter : MonoBehaviour
         _entities.Remove(ap);
     }
 
+    public AudioSource attackSound;
+    int noteCounter = 0;
+    int[] majorScale = new int[] { 0, 2, 4, 5, 7, 9, 11 };
+    float prevAttackTime = 0;
+    float attackComboMaxTimeDiff = 0.5f;
+    protected virtual void PlayAttackSound()
+    {
+        float timeDiff = Time.time - prevAttackTime;
+        if (timeDiff > attackComboMaxTimeDiff)
+		{
+            noteCounter = 0;
+		}
+        prevAttackTime = Time.time;
+        int semitones = majorScale[noteCounter % majorScale.Length] + (noteCounter / majorScale.Length * 12);
+        attackSound.pitch = Mathf.Pow(2, (float)semitones / 12);
+        noteCounter++;
+        attackSound.PlayOneShot(attackSound.clip);
+        Debug.Log("PlayAttackSound");
+    }
 }

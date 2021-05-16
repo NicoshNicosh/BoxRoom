@@ -807,6 +807,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 195724917546264173}
     m_Position: {x: 1165, y: -25, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 792923984376752606}
+    m_Position: {x: 1200, y: 40, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -1409898223544262991}
@@ -946,6 +949,9 @@ AnimatorController:
       m_State: {fileID: 8471464224710014276}
       m_Motion: {fileID: -203655887218126122, guid: 31261ca48a1134ad6b8f425aa259b607,
         type: 3}
+    - serializedVersion: 2
+      m_State: {fileID: 3198913627829271663}
+      m_Motion: {fileID: 7400000, guid: 81fda71855a7f2545a4044d777399133, type: 2}
     m_Behaviours:
     - m_State: {fileID: 8471464224710014276}
       m_StateMachineBehaviours:
@@ -1074,6 +1080,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &792923984376752606
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FlushAnim
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 81fda71855a7f2545a4044d777399133, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &826195777697389379
 AnimatorState:
   serializedVersion: 6

@@ -15,8 +15,6 @@ public class CharacterGame : BaseCharacter
     [Header("Settings")]
     public float WalkSpeed;
     [FormerlySerializedAs("OnEscPressed")] public UnityEvent OnInteract;
-    
-
     protected override void HandleInteraction()
     {
         var interactPressed = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space);
@@ -32,7 +30,7 @@ public class CharacterGame : BaseCharacter
 
     public override bool ModeActive => EnvironmentManager.Instance.Mode == CharacterModes.GameMode;
 
-    private void OnTriggerEnter2D(Collider2D other)=> EntityEnter(other);
+	private void OnTriggerEnter2D(Collider2D other)=> EntityEnter(other);
     private void OnTriggerExit2D(Collider2D other) => EntityExit(other);
     private void OnCollisionEnter2D(Collision2D other) => EntityEnter(other.collider);
     private void OnCollisionExit2D(Collision2D other)=>EntityExit(other.collider);

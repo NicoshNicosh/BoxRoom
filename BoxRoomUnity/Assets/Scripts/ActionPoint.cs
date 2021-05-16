@@ -13,6 +13,7 @@ public class ActionPoint : BaseEntity
     public List<Transform> RootPoints = new List<Transform>();
 
     public int interactionSoundLimit = 0;
+    [ReadOnly]
     public int interactCounter = 0;
 
     public void CharInteract()

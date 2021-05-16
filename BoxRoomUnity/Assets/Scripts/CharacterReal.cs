@@ -1,7 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CharacterReal : BaseCharacter
 {
+
+    private static CharacterReal _instance;
+    public static CharacterReal Instance => _instance ? _instance : _instance = FindObjectOfType<CharacterReal>();
+
     [Header("References")]
     [SerializeField]
     public Rigidbody Rigidbody;

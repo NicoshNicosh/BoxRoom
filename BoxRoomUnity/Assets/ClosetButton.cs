@@ -7,6 +7,7 @@ public abstract class ClosetButton : MonoBehaviour
     public UnityEvent OnBadPurchase;
     public UnityEvent OnGoodPurchase;
     public int Cost;
+    private static readonly int PopsicleNum = Animator.StringToHash("PopsicleNum");
 
     public void Purchase()
     {
@@ -23,11 +24,15 @@ public abstract class ClosetButton : MonoBehaviour
         }
     }
 
-    public abstract void OnPurchase();
+    protected abstract void OnPurchase();
 
     public void TriggerOnCharacter(string triggerName)
     {
-        FindObjectOfType<CharacterReal>().CharacterAnimator.SetTrigger(triggerName);
+        CharacterReal.Instance.CharacterAnimator.SetTrigger(triggerName);
     }
 
+    public void SetCharacterPopsicle(int popNum)
+    {
+        CharacterReal.Instance.CharacterAnimator.SetInteger(PopsicleNum, popNum);
+    }
 }

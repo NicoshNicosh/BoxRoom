@@ -44,6 +44,10 @@ public abstract class BaseEntity : MonoBehaviour
         return (ValidDirections & characterReal.CurrentDirection) != 0;
     }
 
+    public void AddScore(int plusScore)
+    {
+        EnvironmentManager.Instance.ScoreAmount += plusScore;
+    }
 
     public void PlaySound(int clipNum)
     {

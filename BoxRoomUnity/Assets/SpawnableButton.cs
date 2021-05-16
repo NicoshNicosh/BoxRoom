@@ -5,7 +5,7 @@ public class SpawnableButton : ClosetButton
     protected override void OnPurchase()
     {
         var obj = SpawnableManager.Instance.SpawnableRefs[SpawnableNum-1];
-        obj.SetActive(obj.activeSelf);
+        obj.SetActive(!obj.activeSelf);
     }
 
 

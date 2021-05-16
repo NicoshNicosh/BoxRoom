@@ -266,6 +266,12 @@ PrefabInstance:
       objectReference: {fileID: 8832727046868194330}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9374124211f989c4ba77e621b3e42ca5, type: 3}
+--- !u!65 &221435647 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 221435647, guid: cda6a69d34da24b2791c59bbde604294,
+    type: 3}
+  m_PrefabInstance: {fileID: 8832727046868194329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &1132147437
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -408,3 +414,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0636f4ae1bb486b9048a2baebab652a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8832727046868194331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1181198293000705533, guid: cda6a69d34da24b2791c59bbde604294,
+    type: 3}
+  m_PrefabInstance: {fileID: 8832727046868194329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8832727046868194332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8832727046868194331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 1
+  m_BoundingVolume: {fileID: 221435647}
+  m_BoundingShape2D: {fileID: 0}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0

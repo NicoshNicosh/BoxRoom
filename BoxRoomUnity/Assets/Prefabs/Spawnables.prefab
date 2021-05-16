@@ -4363,7 +4363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3587732277483640492}
-  - component: {fileID: 2682121010921340174}
+  - component: {fileID: 3340414640198421274}
   m_Layer: 0
   m_Name: Spawnables
   m_TagString: Untagged
@@ -4394,7 +4394,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2682121010921340174
+--- !u!114 &3340414640198421274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4403,11 +4403,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6873269146485921037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cae98c4b8044d549c10b1d064407f43, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e77159b2e914e78975fc6ac011475ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawnables: []
-  SpawnTarget: {fileID: 0}
+  SpawnableRefs: []
 --- !u!1 &8056691379391291981
 GameObject:
   m_ObjectHideFlags: 0

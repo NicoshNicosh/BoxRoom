@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -110,7 +111,10 @@ public class EnvironmentManager : MonoBehaviour
 
     public void Eat(PotentialPoop p)
     {
-        PotentialPoops.Add(p.Clone());
+        var poop = p.Clone();
+        poop.EatTime = Time.time;
+        PotentialPoops.Add(poop);
+
         FoodAmount += p.FoodGain;
     }
 
@@ -125,20 +129,23 @@ public class EnvironmentManager : MonoBehaviour
             {
 
                 var t = (Time.time - poop.EatTime) / poop.TimeToDigest;
+                t = Mathf.Clamp01(t);
                 var currentPct = poop.DigestionProcess.Evaluate(t);
                 var currentPoop = currentPct * poop.TotalPoop;
                 var lastPoop = poop.DigestedAmount;
-
                 var poopDif = currentPoop - lastPoop;
+                poop.DigestedAmount = currentPoop;
                 PoopProgress = Mathf.Clamp01(PoopProgress + poopDif);
             }
 
+            PotentialPoops.RemoveAll(it => Math.Abs(it.DigestedAmount - it.TotalPoop) < 0.01f);
             FoodAmount = Mathf.Clamp01(FoodAmount - FoodLossPerSecond * Time.deltaTime);
             ScoreText.text = ScoreAmount.ToString();
 
         }
 
         if (Mode == CharacterModes.GameMode && FoodAmount < .1) { EnterRoom(); }
+        if (Mode == CharacterModes.GameMode && DayProgress >= 1) { EnterRoom(); }
         if (Mode == CharacterModes.UiMode && FoodAmount < .01) { EnterRoom(); }
 
 

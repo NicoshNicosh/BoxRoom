@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character
+  m_Name: Character Death
   m_Shader: {fileID: -6465566751694194690, guid: df774963e56fe47fd92e335c5e54af37,
     type: 3}
   m_ShaderKeywords: _SPECULARHIGHLIGHTS_OFF
@@ -70,7 +70,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_22BCCD8F: 1.7
+    - Vector1_22BCCD8F: -0.34
     - Vector1_5D51D8FF: 1
     - Vector1_87D8E916: 0.3
     - Vector1_8B743B34: 1
@@ -99,9 +99,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_68319212: {r: 0, g: 0.91761637, b: 1, a: 0}
-    - Color_6D0E56C8: {r: 0.0025220977, g: 0, b: 0.01886791, a: 0}
-    - Color_86EDCA7: {r: 0, g: 0.04295759, b: 0.1792453, a: 0}
+    - Color_68319212: {r: 0.8748083, g: 0, b: 1, a: 0}
+    - Color_6D0E56C8: {r: 0.16037738, g: 0.10666609, b: 0.11851883, a: 0}
+    - Color_86EDCA7: {r: 0.3018868, g: 0.23211108, b: 0.24818249, a: 0}
     - Vector2_4E26EBA6: {r: 0, g: 0, b: 0, a: 0}
     - Vector3_B5780A68: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

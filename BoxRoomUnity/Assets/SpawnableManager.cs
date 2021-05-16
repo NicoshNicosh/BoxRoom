@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,5 +13,7 @@ public class SpawnableManager : MonoBehaviour
     {
         SpawnableRefs = transform.Cast<Transform>().Select(it => it.gameObject).ToList();
         Instance = this;
+        DontDestroyOnLoad(this);
     }
+    
 }

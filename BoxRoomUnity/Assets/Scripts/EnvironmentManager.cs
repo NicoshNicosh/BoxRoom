@@ -61,7 +61,7 @@ public class EnvironmentManager : MonoBehaviour
 
     [SerializeField] private CharacterModes _mode = CharacterModes.RoomMode;
     private int DebounceFrame = 0;
-    public Scene DeathScene;
+    public string DeathScene;
 
     public CharacterModes Mode => _mode;
     public bool HasToPoop => PoopProgress > MinPoopToPoop;
@@ -71,6 +71,7 @@ public class EnvironmentManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        DayStartTime = Time.time;
     }
 
     public void EnterGame()
@@ -120,6 +121,8 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Update()
     {
+
+        SpawnableManager.Instance.gameObject.SetActive(Mode != CharacterModes.DreamMode);
         if (Mode != CharacterModes.DreamMode)
         {
 

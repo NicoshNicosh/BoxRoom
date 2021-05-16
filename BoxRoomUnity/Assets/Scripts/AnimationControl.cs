@@ -20,4 +20,11 @@ public class AnimationControl : MonoBehaviour
         t.position = target.position;
         t.rotation = target.rotation;
     }
+
+    public void PlaySoundOnEntity(int clipNum)
+    {
+        var entity = Character.CurrentEntity;
+        if(!entity) return;
+        entity.PlaySound(clipNum);
+    }
 }

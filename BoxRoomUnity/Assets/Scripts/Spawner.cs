@@ -8,6 +8,10 @@ public class Spawner : MonoBehaviour
     public void SpawnObject(int spawnableNum)
     {
         Instantiate(Spawnables[spawnableNum], SpawnTarget.position, SpawnTarget.rotation,Persist?SpawnableManager.Instance.transform:null);
+
+        var musicManager = FindObjectOfType<MusicManager>();
+        musicManager.poopFart.pitch = Random.Range(0.5f, 1.5f);
+        musicManager.poopFart.PlayOneShot(musicManager.poopFart.clip);
     } 
     public Transform SpawnTarget;
 

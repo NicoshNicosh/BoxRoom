@@ -6,9 +6,10 @@ public class MusicManager : MonoBehaviour
 {
     private static MusicManager Instance;
 
-    public AudioSource roomMusic, gameMusic, dreamMusic, dream3Music;
+    public AudioSource roomMusic, gameMusic, dreamMusic, dream3Music, poopFart;
     private Dictionary<CharacterModes, AudioSource> audioSources = new Dictionary<CharacterModes, AudioSource>();
     private AudioSource currentSource;
+    
 
     private CharacterModes oldMode;
     // Start is called before the first frame update
@@ -53,15 +54,14 @@ public class MusicManager : MonoBehaviour
     public float pitchWaveAmp = 0.3f;
     void MessWithMusic()
 	{
-
         dreamMusic.pitch = 1f + Mathf.Sin(Time.time * pitchWaveFreq) * pitchWaveAmp;
-        dreamMusic.panStereo = Mathf.Sin(Time.time * pitchWaveFreq);
+        // dreamMusic.panStereo = Mathf.Sin(Time.time * pitchWaveFreq);
     }
 
     void CorrectMusic()
 	{
         dreamMusic.pitch = 1f;
-        dreamMusic.panStereo = 0f;
+        // dreamMusic.panStereo = 0f;
 	}
 
     private void InitializeAudioSources()

@@ -389,6 +389,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687199146443234472, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: PoopSettings.TotalPoop
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117764598030725346, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: PoopSettings.TotalPoop
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697906379248396105, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: PoopSettings.TotalPoop
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697906379248396105, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: PoopSettings.DigestionProcess.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697906379248396105, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: PoopSettings.DigestionProcess.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697906379248396105, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: PoopSettings.DigestionProcess.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697906379248396105, guid: cda6a69d34da24b2791c59bbde604294,
+        type: 3}
+      propertyPath: PoopSettings.DigestionProcess.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8024808418582861940, guid: cda6a69d34da24b2791c59bbde604294,
         type: 3}
       propertyPath: m_Name

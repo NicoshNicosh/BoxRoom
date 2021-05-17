@@ -498,15 +498,15 @@ MonoBehaviour:
     DigestedAmount: 0
     FoodGain: 0.75
     TimeToDigest: 5
-    TotalPoop: 1
+    TotalPoop: 0.6
     DigestionProcess:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 2
-        outSlope: 2
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
@@ -514,8 +514,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
     DigestedAmount: 0
     FoodGain: 0.25
     TimeToDigest: 20
-    TotalPoop: 1
+    TotalPoop: 0.5
     DigestionProcess:
       serializedVersion: 2
       m_Curve:
@@ -1976,7 +1976,7 @@ MonoBehaviour:
     DigestedAmount: 0
     FoodGain: 0.1
     TimeToDigest: 20
-    TotalPoop: 1
+    TotalPoop: 0.4
     DigestionProcess:
       serializedVersion: 2
       m_Curve:

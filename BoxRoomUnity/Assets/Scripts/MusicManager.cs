@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
-    private static MusicManager Instance;
+    public static MusicManager Instance;
 
     public AudioSource roomMusic, gameMusic, dreamMusic, dream3Music, poopFart;
     private Dictionary<CharacterModes, AudioSource> audioSources = new Dictionary<CharacterModes, AudioSource>();

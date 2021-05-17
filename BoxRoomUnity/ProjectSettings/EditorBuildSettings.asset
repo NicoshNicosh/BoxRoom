@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day3.unity
     guid: 924f9fe5ed5bb479085abc0b099958f2
+  - enabled: 1
+    path: Assets/Scenes/Death.unity
+    guid: 0d893143e07984d988f2ceb552c611b2
   m_configObjects: {}
